@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,11 +12,13 @@ public class StartMenu : MonoBehaviour
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _sfxSlider;
     [SerializeField] private GameObject settingsPnl;
-    private void Awake()
+
+    private void Start()
     {
         _musicSlider.value = SoundManager.Instance._bgVolume;
         _sfxSlider.value = SoundManager.Instance._sfxVolume;
     }
+
     public void PlayButton()
     {
         SceneManager.LoadScene(1);
@@ -34,9 +37,9 @@ public class StartMenu : MonoBehaviour
         SoundManager.Instance.Mute(mute.isOn);
     }
 
-    public void ColorCam()
+    public void ToggleCamera()
     {
-        GameManager.Instance.colorCam = colorCam.isOn;
+        SoundManager.Instance.cameraColor = colorCam.isOn;
     }
 
     public void SettingPnl()

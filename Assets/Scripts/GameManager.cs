@@ -39,10 +39,11 @@ public class GameManager : MonoBehaviour
 
     //camera
     public Animator camAnimator;
-    public bool colorCam;
+    public bool colorCamera;
     private void Start()
     {
         navMeshSurface.BuildNavMesh();
+        colorCamera = SoundManager.Instance.cameraColor;
     }
 
     private void Update()

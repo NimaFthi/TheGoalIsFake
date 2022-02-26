@@ -15,6 +15,8 @@ public class SoundManager : MonoBehaviour
     [Range(0f, 1f)] public float _bgVolume;
     [Range(0f, 1f)] public float _sfxVolume;
 
+
+    public bool cameraColor;
     private static SoundManager _instance;
 
     public static SoundManager Instance
@@ -34,7 +36,9 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         _bgVolume = 0.5f;
         _sfxVolume = 0.5f;
+        cameraColor = true;
     }
+    
 
     public void PlaySFX(SFXSounds sound)
     {
@@ -49,11 +53,13 @@ public class SoundManager : MonoBehaviour
 
     public void BGPlayHard()
     {
-        _bgAudioSource.pitch = Mathf.Lerp(_bgAudioSource.pitch, 1.6f, .1f);
+        _bgAudioSource.pitch = Mathf.Lerp(_bgAudioSource.pitch, 1.6f, .5f);
+        _bgAudioSource.pitch = 1.6f;
     }  
     public void BGPlayLight()
     {
-        _bgAudioSource.pitch = Mathf.Lerp(_bgAudioSource.pitch, 1f, .1f);
+        _bgAudioSource.pitch = Mathf.Lerp(_bgAudioSource.pitch, 1f, .5f);
+        _bgAudioSource.pitch = 1f;
     }
 
     public void SetSfxVolume(float value)

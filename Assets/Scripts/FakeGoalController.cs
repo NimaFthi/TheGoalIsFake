@@ -44,12 +44,11 @@ public class FakeGoalController : MonoBehaviour
 
         isTransforming = true;
         fakeGoalAnim.SetTrigger("TransformToEnemy");
-        if (GameManager.Instance.colorCam)
+        if (GameManager.Instance.colorCamera)
         {
             GameManager.Instance.camAnimator.SetBool("Color", true);
-            SoundManager.Instance.BGPlayHard();
         }
-
+        SoundManager.Instance.BGPlayHard();
         yield return new WaitForSeconds(1.5f);
         isUsed = true;
         gameObject.tag = "Enemy";

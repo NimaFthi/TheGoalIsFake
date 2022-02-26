@@ -314,7 +314,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: 100}
+  m_AnchoredPosition: {x: 71.00012, y: 172.00003}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &231164499
@@ -617,7 +617,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.31, y: 1}
+  m_AnchorMax: {x: 0.3093093, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -691,8 +691,8 @@ RectTransform:
   m_Father: {fileID: 644804301}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.31, y: 0}
-  m_AnchorMax: {x: 0.31, y: 1}
+  m_AnchorMin: {x: 0.3093093, y: 0}
+  m_AnchorMax: {x: 0.3093093, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -973,7 +973,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.31, y: 1}
+  m_AnchorMax: {x: 0.3093093, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1162,7 +1162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 70, y: -100}
+  m_AnchoredPosition: {x: 71, y: -150}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &655450246
@@ -1326,7 +1326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &769656496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2313,7 +2313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1197494785
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2539,8 +2539,8 @@ RectTransform:
   m_Father: {fileID: 1611045724}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.31, y: 0}
-  m_AnchorMax: {x: 0.31, y: 1}
+  m_AnchorMin: {x: 0.3093093, y: 0}
+  m_AnchorMax: {x: 0.3093093, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2813,13 +2813,9 @@ MonoBehaviour:
   sfxSoundData:
   - SoundKey: 0
     AudioClip: {fileID: 0}
-  bGSoundData:
-  - SoundKey: 0
-    AudioClip: {fileID: 8300000, guid: 5e44758218d7af748979874ca956cfe6, type: 3}
-  - SoundKey: 1
-    AudioClip: {fileID: 0}
   _bgVolume: 0
   _sfxVolume: 0
+  cameraColor: 0
 --- !u!4 &1386146518
 Transform:
   m_ObjectHideFlags: 0
@@ -3052,7 +3048,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -49, y: 100}
+  m_AnchoredPosition: {x: -28, y: 172}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1526633559
@@ -3104,8 +3100,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 988682978}
         m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
-        m_MethodName: ColorCam
-        m_Mode: 0
+        m_MethodName: ToggleCamera
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3432,7 +3428,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 120}
+  m_AnchoredPosition: {x: 0.99993896, y: 69.99997}
   m_SizeDelta: {x: 110, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2071809155
