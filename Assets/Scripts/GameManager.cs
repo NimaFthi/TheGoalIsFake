@@ -38,7 +38,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool isLastLevel;
 
     //camera
-    public Animator camAnimator; 
+    public Animator camAnimator;
+    public bool colorCam;
     private void Start()
     {
         navMeshSurface.BuildNavMesh();

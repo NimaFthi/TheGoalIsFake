@@ -44,7 +44,8 @@ public class FakeGoalController : MonoBehaviour
 
         isTransforming = true;
         fakeGoalAnim.SetTrigger("TransformToEnemy");
-        GameManager.Instance.camAnimator.SetBool("Color",true);
+        if (GameManager.Instance.colorCam)
+            GameManager.Instance.camAnimator.SetBool("Color",true);
         yield return new WaitForSeconds(1.5f);
         isUsed = true;
         gameObject.tag = "Enemy";
