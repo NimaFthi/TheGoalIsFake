@@ -162,8 +162,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   dieEffectPrefab: {fileID: 0}
-  moveSpeed: 700
+  moveSpeed: 12
+  speedLerp: 0.2
   reSpawnTime: 4
   levelTravelingTime: 4
   isDead: 0
-  reverseController: 0

@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject dieEffectPrefab;
 
     [SerializeField] private float moveSpeed = 40f;
+    [Range(0,1)]
+    public float speedLerp;
     [SerializeField] private float reSpawnTime = 5f;
     [SerializeField] private float levelTravelingTime = 5f;
 
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector3 moveDirection = new Vector3(horizontal, 0f, vertical);
+        moveDirection = moveDirection.normalized;
         velocity = moveDirection * moveSpeed + new Vector3(0f, rb.velocity.y, 0f);
     }
 
@@ -44,7 +47,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
         if (isDead) return;
-        rb.velocity = velocity * Time.fixedDeltaTime;
+        rb.velocity = Vector3.Lerp(rb.velocity, velocity, .5f);
+
     }
 
     private void OnCollisionEnter(Collision other)
