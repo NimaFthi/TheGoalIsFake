@@ -8,6 +8,14 @@ public class StartMenu : MonoBehaviour
 {
     [SerializeField] private Toggle mute;
     [SerializeField] private Toggle colorCam;
+    [SerializeField] private Slider _musicSlider;
+    [SerializeField] private Slider _sfxSlider;
+    [SerializeField] private GameObject settingsPnl;
+    private void Awake()
+    {
+        _musicSlider.value = SoundManager.Instance._bgVolume;
+        _sfxSlider.value = SoundManager.Instance._sfxVolume;
+    }
     public void PlayButton()
     {
         SceneManager.LoadScene(1);
@@ -23,11 +31,16 @@ public class StartMenu : MonoBehaviour
 
     public void MuteAudio()
     {
-        SoundManager.Instance.Mute(mute);
+        SoundManager.Instance.Mute(mute.isOn);
     }
 
     public void ColorCam()
     {
-        GameManager.Instance.colorCam = colorCam;
+        GameManager.Instance.colorCam = colorCam.isOn;
+    }
+
+    public void SettingPnl()
+    {
+        settingsPnl.SetActive(!settingsPnl.activeInHierarchy);
     }
 }

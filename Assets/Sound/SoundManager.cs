@@ -33,10 +33,6 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
         _bgVolume = 0.5f;
         _sfxVolume = 0.5f;
     }
@@ -78,7 +74,7 @@ public class SoundManager : MonoBehaviour
     public void Mute(bool toggle)
     {
         if (toggle)
-            master.audioMixer.SetFloat("MasterVolume",-80);
+            master.audioMixer.SetFloat("MasterVolume", -80);
         else
             master.audioMixer.SetFloat("MasterVolume", 0);
     }
