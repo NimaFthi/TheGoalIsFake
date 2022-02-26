@@ -1209,7 +1209,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 383314861}
   m_HandleRect: {fileID: 1381054752}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.31
@@ -1393,7 +1393,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 594993664}
   m_HandleRect: {fileID: 447051496}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.31
@@ -2707,7 +2707,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5501775901894550151, guid: 2362554e4f0626d4a8951bc4343af507, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5e44758218d7af748979874ca956cfe6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2815,7 +2815,7 @@ MonoBehaviour:
     AudioClip: {fileID: 0}
   bGSoundData:
   - SoundKey: 0
-    AudioClip: {fileID: 0}
+    AudioClip: {fileID: 8300000, guid: 5e44758218d7af748979874ca956cfe6, type: 3}
   - SoundKey: 1
     AudioClip: {fileID: 0}
   _bgVolume: 0

@@ -12,7 +12,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _sfxAudioSource;
     [SerializeField] private AudioSource _bgAudioSource;
     [SerializeField] private SFXSoundData[] sfxSoundData;
-    [SerializeField] private BGSoundData[] bGSoundData;
     [Range(0f, 1f)] public float _bgVolume;
     [Range(0f, 1f)] public float _sfxVolume;
 
@@ -48,15 +47,13 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void BGPlay(BGSounds sound)
+    public void BGPlayHard()
     {
-        foreach (var data in bGSoundData)
-        {
-            if (data.SoundKey == sound)
-            {
-                _sfxAudioSource.PlayOneShot(data.AudioClip);
-            }
-        }
+        _bgAudioSource.pitch = Mathf.Lerp(_bgAudioSource.pitch, 1.6f, .1f);
+    }  
+    public void BGPlayLight()
+    {
+        _bgAudioSource.pitch = Mathf.Lerp(_bgAudioSource.pitch, 1f, .1f);
     }
 
     public void SetSfxVolume(float value)
