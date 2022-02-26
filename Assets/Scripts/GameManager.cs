@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool isLevelChanging;
     [HideInInspector] public bool isLastLevel;
 
+    //camera
+    public Animator camAnimator; 
     private void Start()
     {
         navMeshSurface.BuildNavMesh();
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(playerController.MoveToNextLevel());
         StartCoroutine(LevelHandler.Instance.NextLevelTransition());
+        camAnimator.SetBool("Color",false);
     }
 
     public void LoadEndMenu()

@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     
     public bool isDead;
 
+    //art Work 
+    [SerializeField] private GameObject spawnVFX;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -77,7 +79,6 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             StartCoroutine(ReSpawn());
-            
             if(!GameManager.Instance.currentFakeGoalController.isUsed) return;
             StartCoroutine(GameManager.Instance.currentFakeGoalController.TransformToGoal());
         }
@@ -87,10 +88,13 @@ public class PlayerController : MonoBehaviour
     {
         col.enabled = false;
         playerGFX.SetActive(false);
+        spawnVFX.SetActive(false);
         isDead = true;
         transform.position = playerSpawnTransforms[GameManager.Instance.level].position;
         rb.velocity = Vector3.zero;
         yield return new WaitForSeconds(reSpawnTime);
+        spawnVFX.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         playerGFX.SetActive(true);
         col.enabled = true;
         isDead = false;
@@ -100,9 +104,12 @@ public class PlayerController : MonoBehaviour
     {
         col.enabled = false;
         playerGFX.SetActive(false);
+        spawnVFX.SetActive(false);
         transform.position = playerSpawnTransforms[GameManager.Instance.level].position;
         rb.velocity = Vector3.zero;
         yield return new WaitForSeconds(levelTravelingTime);
+        spawnVFX.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         playerGFX.SetActive(true);
         col.enabled = true;
         if (GameManager.Instance.level == playerSpawnTransforms.Length - 1)
