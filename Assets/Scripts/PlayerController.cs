@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         if(isDead) return;
         if (other.gameObject.CompareTag("Trap"))
         {
+            if(GameManager.Instance.currentFakeGoalController.isTransforming) return;
             GameObject dieEffect = Instantiate(dieEffectPrefab, transform.position, Quaternion.identity);
             Destroy(dieEffect,7f);
             StartCoroutine(ReSpawn());

@@ -12,7 +12,7 @@ public class FakeGoalController : MonoBehaviour
     private NavMeshAgent agent;
     private Animator fakeGoalAnim;
     public bool isUsed;
-    private bool isTransforming;
+    public bool isTransforming;
 
     private void Start()
     {
