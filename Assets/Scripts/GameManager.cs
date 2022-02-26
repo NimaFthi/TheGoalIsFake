@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(playerController.MoveToNextLevel());
         StartCoroutine(LevelHandler.Instance.NextLevelTransition());
         camAnimator.SetBool("Color",false);
+        SoundManager.Instance.BGPlayLight();
     }
 
     public void LoadEndMenu()

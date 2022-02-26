@@ -45,7 +45,11 @@ public class FakeGoalController : MonoBehaviour
         isTransforming = true;
         fakeGoalAnim.SetTrigger("TransformToEnemy");
         if (GameManager.Instance.colorCam)
-            GameManager.Instance.camAnimator.SetBool("Color",true);
+        {
+            GameManager.Instance.camAnimator.SetBool("Color", true);
+            SoundManager.Instance.BGPlayHard();
+        }
+
         yield return new WaitForSeconds(1.5f);
         isUsed = true;
         gameObject.tag = "Enemy";
@@ -67,6 +71,7 @@ public class FakeGoalController : MonoBehaviour
                     GameManager.Instance.LoadEndMenu();
                     return;
                 }
+
                 StartCoroutine(TransformToGoal());
             }
         }
@@ -78,7 +83,8 @@ public class FakeGoalController : MonoBehaviour
 
         isTransforming = true;
         fakeGoalAnim.SetTrigger("TransformToGoal");
-        GameManager.Instance.camAnimator.SetBool("Color",false);
+        GameManager.Instance.camAnimator.SetBool("Color", false);
+        SoundManager.Instance.BGPlayLight();
         yield return new WaitForSeconds(1f);
         isUsed = false;
         gameObject.tag = "Goal";
