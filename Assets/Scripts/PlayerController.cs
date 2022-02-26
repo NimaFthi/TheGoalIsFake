@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject playerGFX;
     [SerializeField] private Transform[] playerSpawnTransforms;
     [SerializeField] private GameObject dieEffectPrefab;
+    [SerializeField] private GameObject endingTxt;
 
     [SerializeField] private float moveSpeed = 40f;
     [Range(0,1)]
@@ -120,6 +121,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance.level == playerSpawnTransforms.Length - 1)
         {
             GameManager.Instance.level++;
+            endingTxt.SetActive(true);
         }
     }
 
