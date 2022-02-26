@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Collider col;
     private Vector3 velocity;
-    private bool isMovedToNextLevel;
+    private bool isMovedToNextLevel = true;
     
     public bool isDead;
 
@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
         if (isDead) return;
+        if(!isMovedToNextLevel) return;
+        
         rb.velocity = Vector3.Lerp(rb.velocity, velocity, .5f);
 
     }
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator MoveToNextLevel()
     {
+        isMovedToNextLevel = false;
         col.enabled = false;
         playerGFX.SetActive(false);
         spawnVFX.SetActive(false);
@@ -112,6 +115,8 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         playerGFX.SetActive(true);
         col.enabled = true;
+        isMovedToNextLevel = true;
+        
         if (GameManager.Instance.level == playerSpawnTransforms.Length - 1)
         {
             GameManager.Instance.level++;
