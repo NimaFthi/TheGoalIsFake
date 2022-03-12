@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         navMeshSurface.BuildNavMesh();
         colorCamera = SoundManager.Instance.cameraColor;
+        SoundManager.Instance.BGPlayLight();
     }
 
     private void Update()
