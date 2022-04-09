@@ -6,14 +6,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Joystick joystick;
     [SerializeField] private GameObject playerGFX;
     [SerializeField] private Transform[] playerSpawnTransforms;
     [SerializeField] private GameObject dieEffectPrefab;
     [SerializeField] private GameObject endingTxt;
 
     [SerializeField] private float moveSpeed = 40f;
-    [Range(0,1)]
-    public float speedLerp;
+    //[Range(0,1)]
+    //public float speedLerp;
     [SerializeField] private float reSpawnTime = 5f;
     [SerializeField] private float levelTravelingTime = 5f;
 
@@ -34,8 +35,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = joystick.Horizontal;
+        float vertical = joystick.Vertical;
 
         Vector3 moveDirection = new Vector3(horizontal, 0f, vertical);
         moveDirection = moveDirection.normalized;
