@@ -1124,7 +1124,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!65 &5392641952777152263
 BoxCollider:
@@ -1156,6 +1156,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   startTransform: {fileID: 0}
   runAwayTransform: {fileID: 0}
+  isTransforming: 0
 --- !u!95 &7064202840826128223
 Animator:
   serializedVersion: 3

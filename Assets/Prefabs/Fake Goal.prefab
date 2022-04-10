@@ -188,6 +188,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   startTransform: {fileID: 0}
   isUsed: 0
+  isTransforming: 0
 --- !u!65 &2179968418104353072
 BoxCollider:
   m_ObjectHideFlags: 0
