@@ -9730,7 +9730,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7879382235367323406}
-  - component: {fileID: 7879382235367323405}
+  - component: {fileID: 5154972175560174512}
   - component: {fileID: 7879382235367323404}
   - component: {fileID: 7879382235367323403}
   m_Layer: 6
@@ -9756,8 +9756,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7879382235367323405
-BoxCollider:
+--- !u!136 &5154972175560174512
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9766,9 +9766,10 @@ BoxCollider:
   m_Material: {fileID: 13400000, guid: 1310bab43c8c5844abaf9514d5831247, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.9655888
+  m_Height: 2.089715
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.044857502, z: 0}
 --- !u!54 &7879382235367323404
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9797,6 +9798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea793a7880f638448bd85ea54b288fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joystick: {fileID: 0}
   playerGFX: {fileID: 7879382234077526288}
   playerSpawnTransforms:
   - {fileID: 0}
@@ -9809,8 +9811,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   dieEffectPrefab: {fileID: 7143412221166565872, guid: b828870966c63fc4dac5c1ee00c60950, type: 3}
+  endingTxt: {fileID: 0}
   moveSpeed: 15
-  speedLerp: 0.2
   reSpawnTime: 3
   levelTravelingTime: 3
   isDead: 0

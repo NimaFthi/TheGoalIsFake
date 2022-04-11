@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
         float vertical = joystick.Vertical;
 
         Vector3 moveDirection = new Vector3(horizontal, 0f, vertical);
-        moveDirection = moveDirection.normalized;
         velocity = moveDirection * moveSpeed + new Vector3(0f, rb.velocity.y, 0f);
     }
 
@@ -53,7 +52,7 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         if(!isMovedToNextLevel) return;
         
-        rb.velocity = Vector3.Lerp(rb.velocity, velocity, .5f);
+        rb.velocity = Vector3.Lerp(rb.velocity, velocity * Time.fixedDeltaTime, .35f);
 
     }
 
