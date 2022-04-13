@@ -12,22 +12,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject dieEffectPrefab;
     [SerializeField] private GameObject endingTxt;
 
-    [SerializeField] private float moveSpeed = 40f;
-
-    //[Range(0,1)]
-    //public float speedLerp;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float turnSpeed = 360;
+    
     [SerializeField] private float reSpawnTime = 5f;
     [SerializeField] private float levelTravelingTime = 5f;
 
     private Rigidbody rb;
     private Collider col;
-    private Vector3 velocity;
+    private Vector3 input;
     private bool isMovedToNextLevel = true;
-    
+
     public bool isDead;
 
     //art Work 
     [SerializeField] private GameObject spawnVFX;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -39,14 +39,44 @@ public class PlayerController : MonoBehaviour
         var horizontal = joystick.Horizontal;
         var vertical = joystick.Vertical;
 
-        // var moveDirection = new Vector3(horizontal, 0f, vertical);
-        // moveDirection = moveDirection.normalized;
-        // velocity = moveDirection * moveSpeed + new Vector3(0f, rb.velocity.y, 0f);
         GatherInput(horizontal, vertical);
+
         Look();
     }
 
     private void FixedUpdate()
+    {
+        Move();
+    }
+
+    private void GatherInput(float hor, float ver)
+    {
+        input = new Vector3(hor, 0, ver);
+    }
+
+    private void Look()
+    {
+        if (GameManager.Instance.isLevelChanging)
+        {
+            transform.rotation = Quaternion.LookRotation(playerSpawnTransforms[GameManager.Instance.level].forward, Vector3.up);
+            return;
+        }
+        if (isDead)
+        {
+            transform.rotation = Quaternion.LookRotation(playerSpawnTransforms[GameManager.Instance.level].forward, Vector3.up);
+            return;
+        }
+        
+        if(GameManager.Instance.currentFakeEnemyController.isTransforming ) return;
+        if (!isMovedToNextLevel) return;
+        if (input == Vector3.zero) return;
+
+        var relative = input.ToIso();
+        var rot = Quaternion.LookRotation(relative, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, turnSpeed * Time.deltaTime);
+    }
+
+    private void Move()
     {
         if (GameManager.Instance.currentFakeEnemyController.isTransforming || GameManager.Instance.isLevelChanging)
         {
@@ -56,50 +86,27 @@ public class PlayerController : MonoBehaviour
 
         if (isDead) return;
         if (!isMovedToNextLevel) return;
-
-        // rb.velocity = Vector3.Lerp(rb.velocity, velocity, .1f);
-        Move();
-    }
-//Sobhan Controller
-    [SerializeField] private float speedTest = 5;
-    [SerializeField] private float turnSpeed = 360;
-    private Vector3 input;
-
-    private void GatherInput(float hor, float ver)
-    {
-        input = new Vector3(hor, 0, ver);
+        
+        rb.velocity = input.magnitude * transform.forward * moveSpeed * Time.fixedDeltaTime;
     }
 
-    private void Look()
-    {
-        if (input != Vector3.zero)
-        {
-            var relative = (transform.position + input.ToIso()) - transform.position;
-            var rot = Quaternion.LookRotation(relative, Vector3.up);
-            transform.rotation=Quaternion.RotateTowards(transform.rotation,rot ,turnSpeed*Time.deltaTime);
-        }
-    }
-    private void Move()
-    {
-        rb.MovePosition(transform.position + (transform.forward * input.magnitude) * speedTest * Time.deltaTime);
-    }
     private void OnCollisionEnter(Collision other)
     {
-        if(isDead) return;
+        if (isDead) return;
         if (other.gameObject.CompareTag("Trap"))
         {
-            if(GameManager.Instance.currentFakeGoalController.isTransforming) return;
+            if (GameManager.Instance.currentFakeGoalController.isTransforming) return;
             GameObject dieEffect = Instantiate(dieEffectPrefab, transform.position, Quaternion.identity);
-            Destroy(dieEffect,7f);
+            Destroy(dieEffect, 7f);
             StartCoroutine(ReSpawn());
-            
-            if(!GameManager.Instance.currentFakeGoalController.isUsed) return;
+
+            if (!GameManager.Instance.currentFakeGoalController.isUsed) return;
             StartCoroutine(GameManager.Instance.currentFakeGoalController.TransformToGoal());
         }
-        else if(other.gameObject.CompareTag("Enemy"))
+        else if (other.gameObject.CompareTag("Enemy"))
         {
             GameObject dieEffect = Instantiate(dieEffectPrefab, transform.position, Quaternion.identity);
-            Destroy(dieEffect,7f);
+            Destroy(dieEffect, 7f);
 
             if (GameManager.Instance.isLastLevel)
             {
@@ -109,8 +116,9 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 return;
             }
+
             StartCoroutine(ReSpawn());
-            if(!GameManager.Instance.currentFakeGoalController.isUsed) return;
+            if (!GameManager.Instance.currentFakeGoalController.isUsed) return;
             StartCoroutine(GameManager.Instance.currentFakeGoalController.TransformToGoal());
         }
     }
@@ -126,6 +134,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(reSpawnTime);
         spawnVFX.SetActive(true);
         yield return new WaitForSeconds(0.5f);
+
         playerGFX.SetActive(true);
         col.enabled = true;
         isDead = false;
@@ -145,7 +154,7 @@ public class PlayerController : MonoBehaviour
         playerGFX.SetActive(true);
         col.enabled = true;
         isMovedToNextLevel = true;
-        
+
         if (GameManager.Instance.level == playerSpawnTransforms.Length - 1)
         {
             GameManager.Instance.level++;
