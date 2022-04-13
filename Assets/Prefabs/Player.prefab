@@ -9817,5 +9817,5 @@ MonoBehaviour:
   levelTravelingTime: 3
   isDead: 0
   spawnVFX: {fileID: 1951063521}
-  speedTest: 50
+  speedTest: 20
   turnSpeed: 360

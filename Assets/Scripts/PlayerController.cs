@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             var relative = (transform.position + input.ToIso()) - transform.position;
             var rot = Quaternion.LookRotation(relative, Vector3.up);
+            transform.rotation=Quaternion.RotateTowards(transform.rotation,rot ,turnSpeed*Time.deltaTime);
         }
     }
     private void Move()
