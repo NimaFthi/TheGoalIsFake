@@ -36,11 +36,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        float horizontal = joystick.Horizontal;
-        float vertical = joystick.Vertical;
+        var horizontal = joystick.Horizontal;
+        var vertical = joystick.Vertical;
 
-        Vector3 moveDirection = new Vector3(horizontal, 0f, vertical);
-        velocity = moveDirection * moveSpeed + new Vector3(0f, rb.velocity.y, 0f);
+        // var moveDirection = new Vector3(horizontal, 0f, vertical);
+        // moveDirection = moveDirection.normalized;
+        // velocity = moveDirection * moveSpeed + new Vector3(0f, rb.velocity.y, 0f);
+        GatherInput(horizontal, vertical);
+        Look();
     }
 
     private void FixedUpdate()
@@ -50,13 +53,35 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector3.zero;
             return;
         }
+
         if (isDead) return;
-        if(!isMovedToNextLevel) return;
+        if (!isMovedToNextLevel) return;
 
-        rb.velocity = velocity* Time.deltaTime;
+        // rb.velocity = Vector3.Lerp(rb.velocity, velocity, .1f);
+        Move();
+    }
+//Sobhan Controller
+    [SerializeField] private float speedTest = 5;
+    [SerializeField] private float turnSpeed = 360;
+    private Vector3 input;
 
+    private void GatherInput(float hor, float ver)
+    {
+        input = new Vector3(hor, 0, ver);
     }
 
+    private void Look()
+    {
+        if (input != Vector3.zero)
+        {
+            var relative = (transform.position + input.ToIso()) - transform.position;
+            var rot = Quaternion.LookRotation(relative, Vector3.up);
+        }
+    }
+    private void Move()
+    {
+        rb.MovePosition(transform.position + (transform.forward * input.magnitude) * speedTest * Time.deltaTime);
+    }
     private void OnCollisionEnter(Collision other)
     {
         if(isDead) return;

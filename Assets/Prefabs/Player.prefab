@@ -9766,7 +9766,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 1310bab43c8c5844abaf9514d5831247, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.9655888
+  m_Radius: 1
   m_Height: 2.089715
   m_Direction: 1
   m_Center: {x: 0, y: 0.044857502, z: 0}
@@ -9812,8 +9812,10 @@ MonoBehaviour:
   - {fileID: 0}
   dieEffectPrefab: {fileID: 7143412221166565872, guid: b828870966c63fc4dac5c1ee00c60950, type: 3}
   endingTxt: {fileID: 0}
-  moveSpeed: 15
+  moveSpeed: 700
   reSpawnTime: 3
   levelTravelingTime: 3
   isDead: 0
   spawnVFX: {fileID: 1951063521}
+  speedTest: 50
+  turnSpeed: 360

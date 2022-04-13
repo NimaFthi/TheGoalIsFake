@@ -56054,10 +56054,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5154972175560174512, guid: 849c89dcba2214d4da2b5729e96ee215, type: 3}
-      propertyPath: m_Radius
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7879382235367323403, guid: 849c89dcba2214d4da2b5729e96ee215, type: 3}
       propertyPath: joystick
       value: 
@@ -56066,10 +56062,6 @@ PrefabInstance:
       propertyPath: endingTxt
       value: 
       objectReference: {fileID: 441792020}
-    - target: {fileID: 7879382235367323403, guid: 849c89dcba2214d4da2b5729e96ee215, type: 3}
-      propertyPath: moveSpeed
-      value: 700
-      objectReference: {fileID: 0}
     - target: {fileID: 7879382235367323403, guid: 849c89dcba2214d4da2b5729e96ee215, type: 3}
       propertyPath: playerSpawnTransforms.Array.data[0]
       value: 
@@ -56153,10 +56145,6 @@ PrefabInstance:
     - target: {fileID: 7879382235367323407, guid: 849c89dcba2214d4da2b5729e96ee215, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7879382235367323407, guid: 849c89dcba2214d4da2b5729e96ee215, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 849c89dcba2214d4da2b5729e96ee215, type: 3}
