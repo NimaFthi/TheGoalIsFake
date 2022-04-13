@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject endingTxt;
 
     [SerializeField] private float moveSpeed = 40f;
+
     //[Range(0,1)]
     //public float speedLerp;
     [SerializeField] private float reSpawnTime = 5f;
@@ -51,8 +52,8 @@ public class PlayerController : MonoBehaviour
         }
         if (isDead) return;
         if(!isMovedToNextLevel) return;
-        
-        rb.velocity = Vector3.Lerp(rb.velocity, velocity * Time.fixedDeltaTime, .35f);
+
+        rb.velocity = velocity* Time.deltaTime;
 
     }
 
