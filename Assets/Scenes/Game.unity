@@ -56063,6 +56063,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 441792020}
     - target: {fileID: 7879382235367323403, guid: 849c89dcba2214d4da2b5729e96ee215, type: 3}
+      propertyPath: speedTest
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879382235367323403, guid: 849c89dcba2214d4da2b5729e96ee215, type: 3}
       propertyPath: playerSpawnTransforms.Array.data[0]
       value: 
       objectReference: {fileID: 323623767}
