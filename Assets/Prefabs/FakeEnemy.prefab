@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27001f7abd584ec4481548d090f1439a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentEnemySpeed: 12
+  agentEnemySpeed: 10
   agentGoalSpeed: 20
   playerTransform: {fileID: 0}
   startTransform: {fileID: 0}
