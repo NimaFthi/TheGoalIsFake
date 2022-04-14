@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         if (!isMovedToNextLevel) return;
         
-        rb.velocity = input.magnitude * transform.forward * moveSpeed * Time.fixedDeltaTime;
+        rb.velocity = transform.forward * (input.magnitude * moveSpeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision other)

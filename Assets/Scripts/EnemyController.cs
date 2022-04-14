@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         if(GameManager.Instance.isLevelChanging) return;
-        PlayerController playerControllerScript = target.GetComponent<PlayerController>();
+        var playerControllerScript = target.GetComponent<PlayerController>();
         if(playerControllerScript== null) return;
         if (playerControllerScript.isDead)
         {
