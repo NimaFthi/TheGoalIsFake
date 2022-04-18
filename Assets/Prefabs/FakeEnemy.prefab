@@ -1114,10 +1114,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2
-  m_Speed: 10
-  m_Acceleration: 15
+  m_Speed: 8
+  m_Acceleration: 12
   avoidancePriority: 50
-  m_AngularSpeed: 720
+  m_AngularSpeed: 600
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -1151,8 +1151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27001f7abd584ec4481548d090f1439a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentEnemySpeed: 10
-  agentGoalSpeed: 20
+  agentEnemySpeed: 8
+  agentGoalSpeed: 15
   playerTransform: {fileID: 0}
   startTransform: {fileID: 0}
   runAwayTransform: {fileID: 0}

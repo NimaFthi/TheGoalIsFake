@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject endingTxt;
 
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float turnSpeed = 360;
+    //[SerializeField] private float turnSpeed = 360;
     
     [SerializeField] private float reSpawnTime = 5f;
     [SerializeField] private float levelTravelingTime = 5f;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
         GatherInput(horizontal, vertical);
 
-        Look();
+        //Look();
     }
 
     private void FixedUpdate()
@@ -54,27 +54,27 @@ public class PlayerController : MonoBehaviour
         input = new Vector3(hor, 0, ver);
     }
 
-    private void Look()
-    {
-        if (GameManager.Instance.isLevelChanging)
-        {
-            transform.rotation = Quaternion.LookRotation(playerSpawnTransforms[GameManager.Instance.level].forward, Vector3.up);
-            return;
-        }
-        if (isDead)
-        {
-            transform.rotation = Quaternion.LookRotation(playerSpawnTransforms[GameManager.Instance.level].forward, Vector3.up);
-            return;
-        }
-        
-        if(GameManager.Instance.currentFakeEnemyController.isTransforming ) return;
-        if (!isMovedToNextLevel) return;
-        if (input == Vector3.zero) return;
-
-        var relative = input.ToIso();
-        var rot = Quaternion.LookRotation(relative, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, turnSpeed * Time.deltaTime);
-    }
+    // private void Look()
+    // {
+    //     if (GameManager.Instance.isLevelChanging)
+    //     {
+    //         transform.rotation = Quaternion.LookRotation(playerSpawnTransforms[GameManager.Instance.level].forward, Vector3.up);
+    //         return;
+    //     }
+    //     if (isDead)
+    //     {
+    //         transform.rotation = Quaternion.LookRotation(playerSpawnTransforms[GameManager.Instance.level].forward, Vector3.up);
+    //         return;
+    //     }
+    //     
+    //     if(GameManager.Instance.currentFakeEnemyController.isTransforming ) return;
+    //     if (!isMovedToNextLevel) return;
+    //     if (input == Vector3.zero) return;
+    //
+    //     var relative = input.ToIso();
+    //     var rot = Quaternion.LookRotation(relative, Vector3.up);
+    //     transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, turnSpeed * Time.deltaTime);
+    // }
 
     private void Move()
     {
@@ -87,7 +87,9 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         if (!isMovedToNextLevel) return;
         
-        rb.velocity = transform.forward * (input.magnitude * moveSpeed * Time.deltaTime);
+        var relative = input.ToIso();
+
+        rb.velocity = relative * moveSpeed * Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision other)
