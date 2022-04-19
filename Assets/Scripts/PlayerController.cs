@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject endingTxt;
 
     [SerializeField] private float moveSpeed = 10f;
-    
+
     [SerializeField] private float reSpawnTime = 5f;
     [SerializeField] private float levelTravelingTime = 5f;
 
@@ -35,10 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        var horizontal = joystick.Horizontal;
-        var vertical = joystick.Vertical;
-
-        GatherInput(horizontal, vertical);
+        GatherInput();
     }
 
     private void FixedUpdate()
@@ -46,9 +43,11 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
-    private void GatherInput(float hor, float ver)
+    private void GatherInput()
     {
-        input = new Vector3(hor, 0, ver);
+        var horizontal = joystick.Horizontal;
+        var vertical = joystick.Vertical;
+        input = new Vector3(horizontal, 0, vertical);
     }
 
     private void Move()
@@ -61,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
         if (isDead) return;
         if (!isMovedToNextLevel) return;
-        
+
         var relative = input.ToIso();
 
         rb.velocity = relative * moveSpeed * Time.deltaTime;
