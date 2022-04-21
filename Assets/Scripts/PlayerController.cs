@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour
         if (!isMovedToNextLevel) return;
 
         var relative = input.ToIso();
-
-        rb.velocity = relative * moveSpeed * Time.deltaTime;
+        
+        rb.velocity = new Vector3(relative.x, 0, relative.z) * (moveSpeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision other)
