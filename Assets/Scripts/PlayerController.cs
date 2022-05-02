@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject playerGFX;
     [SerializeField] private Transform[] playerSpawnTransforms;
     [SerializeField] private GameObject dieEffectPrefab;
-    [SerializeField] private GameObject endingTxt;
 
     [SerializeField] private float moveSpeed = 10f;
 
@@ -64,7 +63,7 @@ public class PlayerController : MonoBehaviour
         var relative = input.ToIso();
         
         rb.velocity = new Vector3(relative.x, 0, relative.z) * (moveSpeed * Time.fixedDeltaTime);
-        // transform.forward = input.ToIso();
+        transform.forward = input.ToIso();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -135,7 +134,6 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance.level == playerSpawnTransforms.Length - 1)
         {
             GameManager.Instance.level++;
-            endingTxt.SetActive(true);
         }
     }
 

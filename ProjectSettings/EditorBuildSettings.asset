@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: 83ea5d778e64a27428d4eb9533621276
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Azur Games.unity
+    guid: d24f1990cf62da24ab31de401ef66816
   - enabled: 1
     path: Assets/Scenes/EndMenu.unity
     guid: cdb741969e02a6b49b71a898a48d8fda
