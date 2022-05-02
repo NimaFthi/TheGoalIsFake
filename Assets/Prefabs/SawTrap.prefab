@@ -195,6 +195,40 @@ MonoBehaviour:
   nodes:
   - {fileID: 2210985470318331914}
   - {fileID: 2210985470141497825}
+  moveDuration: 2
+  moveCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.002641963
+      outSlope: -0.002641963
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 0.9038462
+    - serializedVersion: 3
+      time: 0.50809205
+      value: 1.0576352
+      inSlope: 0.89292246
+      outSlope: 0.89292246
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.14240445
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.0202206
+      outSlope: 1.0202206
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16788293
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!208 &825081134
 NavMeshObstacle:
   m_ObjectHideFlags: 0

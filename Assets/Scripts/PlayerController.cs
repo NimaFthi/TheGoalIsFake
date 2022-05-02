@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         var horizontal = joystick.Horizontal;
         var vertical = joystick.Vertical;
-        input = new Vector3(horizontal, 0, vertical);
+        input = new Vector3(horizontal, 0, vertical).normalized;
     }
 
     private void Move()
@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         var relative = input.ToIso();
         
         rb.velocity = new Vector3(relative.x, 0, relative.z) * (moveSpeed * Time.fixedDeltaTime);
+        // transform.forward = input.ToIso();
     }
 
     private void OnCollisionEnter(Collision other)
