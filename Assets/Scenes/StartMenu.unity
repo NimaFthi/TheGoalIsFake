@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7f4a267b4ddf34b80830e23f436a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 30
+  rotationSpeed: {x: 0, y: 0, z: 30}
 --- !u!1 &101107403
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7f4a267b4ddf34b80830e23f436a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 30
+  rotationSpeed: {x: 0, y: 0, z: 30}
 --- !u!1 &231164497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1574,6 @@ GameObject:
   - component: {fileID: 824711551}
   - component: {fileID: 824711550}
   - component: {fileID: 824711549}
-  - component: {fileID: 824711548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1582,19 +1581,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &824711548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824711547}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c62c26fefa83771459eceabc55797a25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollSpeed: 100
 --- !u!81 &824711549
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2049,7 +2035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7f4a267b4ddf34b80830e23f436a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 30
+  rotationSpeed: {x: 0, y: 0, z: 30}
 --- !u!1 &1123750724
 GameObject:
   m_ObjectHideFlags: 0

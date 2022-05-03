@@ -6,12 +6,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     //components
-    private Rigidbody rb;
-    private Vector3 input;
     [SerializeField] private Joystick joystick;
+    private Rigidbody rb;
 
-    [Header("Stats")] 
-    [SerializeField] private float moveSpeed = 5f;
+    //move stats
+    [SerializeField] private float moveSpeed = 600f;
+
+    private Vector3 input;
+    [HideInInspector] public bool canMove = true;
 
     private void Start()
     {
@@ -32,13 +34,17 @@ public class PlayerMovement : MonoBehaviour
     {
         var horizontal = joystick.Horizontal;
         var vertical = joystick.Vertical;
-        input = new Vector3(horizontal, 0, vertical);
+        input = new Vector3(horizontal, 0, vertical).normalized.ToIso();
     }
-    
+
     private void Move()
     {
-        var relative = input.ToIso();
-        
-        rb.velocity = new Vector3(relative.x, 0, relative.z) * (moveSpeed * Time.fixedDeltaTime);
+        if (!canMove)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+
+        rb.velocity = input * moveSpeed * Time.deltaTime;
     }
 }

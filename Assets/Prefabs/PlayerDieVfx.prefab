@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7143412221166565886}
   - component: {fileID: 7143412221166565873}
   m_Layer: 0
-  m_Name: PlayerDieEffect
+  m_Name: PlayerDieVfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
