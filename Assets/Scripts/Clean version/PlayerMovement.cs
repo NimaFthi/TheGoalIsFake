@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 600f;
 
     private Vector3 input;
-    [HideInInspector] public bool canMove = true;
+    
 
     private void Start()
     {
@@ -39,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (!canMove)
+        if (PlayerManager.instance.isDead || !PlayerManager.instance.canMove)
         {
             rb.velocity = Vector3.zero;
             return;

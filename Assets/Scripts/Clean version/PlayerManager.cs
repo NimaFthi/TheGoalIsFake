@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -26,42 +24,84 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject playerGfx;
     [SerializeField] private GameObject dieVfx;
+    [SerializeField] private Collider playerCol;
     //[SerializeField] private GameObject spawnVfx;
-    //[SerializeField] private Collider playerCol;
     
     //stats
     [SerializeField] private float reSpawnTime = 5f;
-    private bool isDead;
+    public float delayBeforeCanMoveAgain = 1f;
+    public float delayBeforeDetectingCollision = 0.1f;
+    
+    [HideInInspector] public bool isDead;
+    [HideInInspector] public bool canDetectCollision = true;
+    [HideInInspector] public bool canMove = true;
+    private bool isTouchedGoal;
+    
+    //events
+    public event Action OnFirstTouchToGoal;
+    public event Action OnSecondTouchToGoal;
+    public event Action OnPlayerDeath;
 
     private void OnCollisionEnter(Collision other)
     {
+        if(!canDetectCollision) return;
         if(isDead) return;
         
         if (other.gameObject.CompareTag("Trap"))
         {
+            Die();
             StartCoroutine(ReSpawn());
+        }
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Die();
+            StartCoroutine(ReSpawn());
+        }
+
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            if (!isTouchedGoal)
+            {
+                OnFirstTouchToGoal?.Invoke();
+                isTouchedGoal = true;
+            }
+            else
+            {
+                OnSecondTouchToGoal?.Invoke();
+                isTouchedGoal = false;
+            }
         }
     }
 
     private IEnumerator ReSpawn()
     {
         isDead = true;
-        playerMovement.canMove = false;
+        canMove = false;
         playerGfx.SetActive(false);
-        Die();
-        
+        playerCol.enabled = false;
+
         transform.position = LevelManager.instance.playerSpawnPos[LevelManager.instance.currentLevel].position;
         
         yield return new WaitForSeconds(reSpawnTime);
         
         playerGfx.SetActive(true);
-        playerMovement.canMove = true;
+        playerCol.enabled = true;
+        canMove = true;
         isDead = false;
     }
 
     private void Die()
     {
+        
         GameObject dieEffect = Instantiate(dieVfx, transform.position, Quaternion.identity);
         Destroy(dieEffect, 7f);
+
+        if (!isTouchedGoal) return;
+        
+        OnPlayerDeath?.Invoke();
+        isTouchedGoal = false;
     }
+
+
 }

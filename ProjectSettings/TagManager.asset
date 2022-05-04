@@ -8,7 +8,6 @@ TagManager:
   - Trap
   - Goal
   - RealGoal
-  - Wall
   layers:
   - Default
   - TransparentFX

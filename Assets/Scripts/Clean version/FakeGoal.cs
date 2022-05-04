@@ -1,18 +1,130 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FakeGoal : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //components
+    private NavMeshAgent agent;
+    private Animator fakeGoalAnim;
+
+    //destinations
+    public Transform playerTransform;
+    public Transform startTransform;
+    private Transform target;
+
+    [HideInInspector] public bool isUsed;
+    [HideInInspector] public bool isTransforming;
+
+    //stats
+    [SerializeField] private float delayBeforeChasingPlayer = 1f;
+
+    private enum FollowState
     {
-        
+        Idle,
+        FollowingPLayer,
+        MovingBackToStart
     }
 
-    // Update is called once per frame
-    void Update()
+    private FollowState followState;
+
+    private void Start()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
+        fakeGoalAnim = GetComponent<Animator>();
     }
+
+    #region Set Destination
+
+    private void Update()
+    {
+        SetFollowState();
+        GoToDestination();
+    }
+
+    private void SetFollowState()
+    {
+        if (isTransforming)
+        {
+            followState = FollowState.Idle;
+            return;
+        }
+
+        followState = isUsed ? FollowState.FollowingPLayer : FollowState.MovingBackToStart;
+    }
+
+    private void GoToDestination()
+    {
+        switch (followState)
+        {
+            case FollowState.Idle:
+                target = transform;
+                break;
+            case FollowState.FollowingPLayer:
+                target = playerTransform;
+                break;
+            case FollowState.MovingBackToStart:
+                target = startTransform;
+                break;
+        }
+
+        agent.SetDestination(target.position);
+    }
+
+    #endregion
+
+    #region Transform
+
+    private void OnEnable()
+    {
+        PlayerManager.instance.OnPlayerDeath += OnPlayerDeathAction;
+        PlayerManager.instance.OnFirstTouchToGoal += OnFirstTouchToGoalAction;
+    }
+
+    private void OnDisable()
+    {
+        PlayerManager.instance.OnPlayerDeath -= OnPlayerDeathAction;
+        PlayerManager.instance.OnFirstTouchToGoal -= OnFirstTouchToGoalAction;
+    }
+
+    private void OnPlayerDeathAction()
+    {
+        StartCoroutine(TransformToGoal());
+    }
+
+    private void OnFirstTouchToGoalAction()
+    {
+        StartCoroutine(TransformToEnemy());
+    }
+
+    private IEnumerator TransformToEnemy()
+    {
+        isTransforming = true;
+        fakeGoalAnim.SetTrigger("TransformToEnemy");
+        PlayerManager.instance.canMove = false;
+        PlayerManager.instance.canDetectCollision = false;
+
+        yield return new WaitForSeconds(PlayerManager.instance.delayBeforeCanMoveAgain);
+
+        PlayerManager.instance.canMove = true;
+
+        yield return new WaitForSeconds(delayBeforeChasingPlayer);
+
+        isUsed = true;
+        gameObject.tag = "Enemy";
+        PlayerManager.instance.canDetectCollision = true;
+        isTransforming = false;
+    }
+
+    private IEnumerator TransformToGoal()
+    {
+        fakeGoalAnim.SetTrigger("TransformToGoal");
+
+        yield return new WaitForSeconds(PlayerManager.instance.delayBeforeDetectingCollision);
+        
+        isUsed = false;
+        gameObject.tag = "Goal";
+    }
+
+    #endregion
 }
