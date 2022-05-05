@@ -63,10 +63,10 @@ public class PlayerController : MonoBehaviour
         var relative = input.ToIso();
         
         rb.velocity = new Vector3(relative.x, 0, relative.z) * (moveSpeed * Time.fixedDeltaTime);
-        if (input.magnitude != 0)
-        {
-            transform.forward = input.ToIso();
-        }
+        // if (input.magnitude != 0)
+        // {
+        //     transform.forward = input.ToIso();
+        // }
     }
 
     private void OnCollisionEnter(Collision other)
