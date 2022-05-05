@@ -57,6 +57,7 @@ public class LevelHandler : MonoBehaviour
 
     private void SpawnFakeEnemy()
     {
+        if(GameManager.Instance.isLastLevel) return;
         if (fakeEnemySpawnTransforms[GameManager.Instance.level] == null) return;
 
         GameObject fakeEnemy = Instantiate(fakeEnemyPrefab, fakeEnemySpawnTransforms[GameManager.Instance.level].position,Quaternion.identity);
