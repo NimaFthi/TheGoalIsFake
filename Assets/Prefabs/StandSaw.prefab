@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9103738494872996887}
   - component: {fileID: 7302030019245370819}
   - component: {fileID: 7302030019245370816}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Saw
   m_TagString: Trap
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7608669171593063524}
   - component: {fileID: 7608669171593063525}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StandSaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 7608669172743399902}
   - component: {fileID: 7608669172743399897}
   - component: {fileID: 7608669172743399896}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
