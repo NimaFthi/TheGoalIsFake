@@ -1269,7 +1269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNum: 0
-  levelDone: 1
+  levelDone: 0
   animator: {fileID: 1281194523}
   playerSpawnPos: {fileID: 1629779761}
   fakeEnemySpawnPos: {fileID: 76189794}
