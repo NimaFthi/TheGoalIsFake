@@ -33,5 +33,12 @@ public class Level : MonoBehaviour
     {
         yield return new WaitForSeconds(1.01f);
         this.gameObject.SetActive(false);
+        LevelManager.instance.navMeshSurface.BuildNavMesh();
+    }
+
+    public void Spawn()
+    {
+        LevelManager.instance.SpawnFakes();
+        PlayerManager.instance.EnablePlayer();
     }
 }

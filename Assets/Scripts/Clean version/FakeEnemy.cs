@@ -70,13 +70,13 @@ public class FakeEnemy : MonoBehaviour
                 target = transform;
                 break;
             case FollowState.FollowingPLayer:
-                target = playerTransform;
+                target = PlayerManager.instance.transform;
                 break;
             case FollowState.MovingBackToStart:
-                target = startTransform;
+                target = LevelManager.instance.levels[LevelManager.instance.currentLevel].fakeEnemySpawnPos;
                 break;
             case FollowState.RunningAway:
-                target = runAwayTransform;
+                target = LevelManager.instance.levels[LevelManager.instance.currentLevel].fakeEnemyRunAwayPos;
                 break;
         }
 

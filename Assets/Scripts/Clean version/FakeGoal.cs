@@ -61,10 +61,10 @@ public class FakeGoal : MonoBehaviour
                 target = transform;
                 break;
             case FollowState.FollowingPLayer:
-                target = playerTransform;
+                target = PlayerManager.instance.transform;
                 break;
             case FollowState.MovingBackToStart:
-                target = startTransform;
+                target = LevelManager.instance.levels[LevelManager.instance.currentLevel].fakeGoalStartPos;
                 break;
         }
 

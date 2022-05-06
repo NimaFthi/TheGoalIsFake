@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,19 +23,19 @@ public class LevelManager : MonoBehaviour
     }
 
     //components
-    [SerializeField] private NavMeshSurface navMeshSurface;
-    // public List<Transform> playerSpawnPos = new List<Transform>();
-    // public List<Transform> fakeEnemyStartPos = new List<Transform>();
-    // public List<Transform> fakeGoalStartPos = new List<Transform>();
-    // public List<Transform> fakeEnemyRunAwayPos = new List<Transform>();
-    
+    public NavMeshSurface navMeshSurface;
+
     public int currentLevel;
     public int startLevel;
     private int numberOfLevels;
-
     public List<Level> levels;
-    
-    
+
+    [SerializeField] private GameObject fakeEnemyPrefab;
+    [SerializeField] private GameObject fakeGoalPrefab;
+    private GameObject currentFakeEnemy;
+    private GameObject currentFakeGoal;
+
+
     private void OnEnable()
     {
         PlayerManager.instance.OnSecondTouchToGoal += OnSecondTouchToGoal;
@@ -54,19 +55,38 @@ public class LevelManager : MonoBehaviour
             if (level.levelDone)
                 currentLevel++;
         }
+
         startLevel = currentLevel;
         levels[startLevel].StartLevel();
         navMeshSurface.BuildNavMesh();
+        SpawnFakes();
     }
 
     private void OnSecondTouchToGoal()
     {
-        if (currentLevel != numberOfLevels - 1)
+        if (currentLevel == numberOfLevels - 1)
         {
-            levels[currentLevel].ExitLevel();
-            currentLevel++;
-            levels[currentLevel].StartLevel();
-            navMeshSurface.BuildNavMesh();
+            Debug.Log(" DONE !");
+            return;
         }
+        PlayerManager.instance.DisablePlayer();
+        levels[currentLevel].ExitLevel();
+        currentLevel++;
+        DestroyFakes();
+        levels[currentLevel].StartLevel();
+    }
+
+    public void SpawnFakes()
+    {
+        currentFakeEnemy = Instantiate(fakeEnemyPrefab, levels[currentLevel].fakeEnemySpawnPos.position,
+            Quaternion.identity);
+        currentFakeGoal = Instantiate(fakeGoalPrefab, levels[currentLevel].fakeGoalStartPos.position,
+            Quaternion.identity);
+    }
+
+    public void DestroyFakes()
+    {
+        Destroy(currentFakeEnemy);
+        Destroy(currentFakeGoal);
     }
 }

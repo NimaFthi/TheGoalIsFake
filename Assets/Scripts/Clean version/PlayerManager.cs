@@ -80,8 +80,7 @@ public class PlayerManager : MonoBehaviour
         canMove = false;
         playerGfx.SetActive(false);
         playerCol.enabled = false;
-
-        // transform.position = LevelManager.instance.playerSpawnPos[LevelManager.instance.currentLevel].position;
+        
         transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].playerSpawnPos.position;
         
         yield return new WaitForSeconds(reSpawnTime);
@@ -104,5 +103,19 @@ public class PlayerManager : MonoBehaviour
         isTouchedGoal = false;
     }
 
+    public void DisablePlayer()
+    {
+        canMove = false;
+        playerGfx.SetActive(false);
+        playerCol.enabled = false;
+    }
 
+    public void EnablePlayer()
+    {
+        isTouchedGoal = false;
+        transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].playerSpawnPos.position;
+        canMove = true;
+        playerGfx.SetActive(true);
+        playerCol.enabled = true;
+    }
 }
