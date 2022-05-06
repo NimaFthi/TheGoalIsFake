@@ -23,15 +23,18 @@ public class LevelManager : MonoBehaviour
 
     //components
     [SerializeField] private NavMeshSurface navMeshSurface;
-    public List<Transform> playerSpawnPos = new List<Transform>();
-    public List<Transform> fakeEnemyStartPos = new List<Transform>();
-    public List<Transform> fakeGoalStartPos = new List<Transform>();
-    public List<Transform> fakeEnemyRunAwayPos = new List<Transform>();
-
-
+    // public List<Transform> playerSpawnPos = new List<Transform>();
+    // public List<Transform> fakeEnemyStartPos = new List<Transform>();
+    // public List<Transform> fakeGoalStartPos = new List<Transform>();
+    // public List<Transform> fakeEnemyRunAwayPos = new List<Transform>();
+    
     public int currentLevel;
+    public int startLevel;
     private int numberOfLevels;
 
+    public List<Level> levels;
+    
+    
     private void OnEnable()
     {
         PlayerManager.instance.OnSecondTouchToGoal += OnSecondTouchToGoal;
@@ -44,16 +47,26 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        numberOfLevels = playerSpawnPos.Count;
+        numberOfLevels = levels.Count;
+        currentLevel = 0;
+        foreach (var level in levels)
+        {
+            if (level.levelDone)
+                currentLevel++;
+        }
+        startLevel = currentLevel;
+        levels[startLevel].StartLevel();
+        navMeshSurface.BuildNavMesh();
     }
 
     private void OnSecondTouchToGoal()
     {
         if (currentLevel != numberOfLevels - 1)
         {
-            
+            levels[currentLevel].ExitLevel();
             currentLevel++;
-            
+            levels[currentLevel].StartLevel();
+            navMeshSurface.BuildNavMesh();
         }
     }
 }

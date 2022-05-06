@@ -277,7 +277,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79342375}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.25, y: 0, z: -5}
+  m_LocalPosition: {x: -19.25, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 255597057}
@@ -460,6 +460,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 255597057}
+  - component: {fileID: 255597059}
+  - component: {fileID: 255597058}
   m_Layer: 0
   m_Name: Level 1
   m_TagString: Untagged
@@ -488,6 +490,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &255597058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255597056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805a4f9c3a111c84c8cc7907989ec5ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNum: 1
+  levelDone: 0
+  animator: {fileID: 255597059}
+  playerSpawnPos: {fileID: 441350435}
+  fakeEnemySpawnPos: {fileID: 1793500800}
+  fakeGoalStartPos: {fileID: 1204161440}
+  fakeEnemyRunAwayPos: {fileID: 79342376}
+--- !u!95 &255597059
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255597056}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ac843c09b34c574296938017108c4b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &441350434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,13 +1079,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bbfcb334b48534fa0cb1b37b712be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navMeshSurface: {fileID: 0}
-  playerSpawnPos:
-  - {fileID: 1629779761}
-  fakeEnemyStartPos: []
-  fakeGoalStartPos: []
-  fakeEnemyRunAwayPos: []
+  navMeshSurface: {fileID: 1191155625}
   currentLevel: 0
+  startLevel: 0
+  levels:
+  - {fileID: 1281194522}
+  - {fileID: 255597058}
 --- !u!1 &1191155624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256622269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.25, y: 0, z: -5}
+  m_LocalPosition: {x: -19.25, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1281194524}
@@ -1206,6 +1245,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1281194524}
+  - component: {fileID: 1281194523}
+  - component: {fileID: 1281194522}
   m_Layer: 0
   m_Name: Level 0
   m_TagString: Untagged
@@ -1213,6 +1254,44 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1281194522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281194521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805a4f9c3a111c84c8cc7907989ec5ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNum: 0
+  levelDone: 0
+  animator: {fileID: 1281194523}
+  playerSpawnPos: {fileID: 1629779761}
+  fakeEnemySpawnPos: {fileID: 76189794}
+  fakeGoalStartPos: {fileID: 454249471}
+  fakeEnemyRunAwayPos: {fileID: 1256622270}
+--- !u!95 &1281194523
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281194521}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ac843c09b34c574296938017108c4b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1281194524
 Transform:
   m_ObjectHideFlags: 0

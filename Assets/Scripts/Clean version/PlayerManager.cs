@@ -81,7 +81,8 @@ public class PlayerManager : MonoBehaviour
         playerGfx.SetActive(false);
         playerCol.enabled = false;
 
-        transform.position = LevelManager.instance.playerSpawnPos[LevelManager.instance.currentLevel].position;
+        // transform.position = LevelManager.instance.playerSpawnPos[LevelManager.instance.currentLevel].position;
+        transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].playerSpawnPos.position;
         
         yield return new WaitForSeconds(reSpawnTime);
         
@@ -94,7 +95,7 @@ public class PlayerManager : MonoBehaviour
     private void Die()
     {
         
-        GameObject dieEffect = Instantiate(dieVfx, transform.position, Quaternion.identity);
+        var dieEffect = Instantiate(dieVfx, transform.position, Quaternion.identity);
         Destroy(dieEffect, 7f);
 
         if (!isTouchedGoal) return;
