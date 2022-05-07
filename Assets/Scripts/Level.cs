@@ -7,7 +7,6 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     public int levelNum;
-    public bool levelDone;
     public Animator animator;
     public Transform playerSpawnPos;
     public Transform fakeEnemySpawnPos;
@@ -24,14 +23,13 @@ public class Level : MonoBehaviour
 
     public void ExitLevel()
     {
-        this.levelDone = true;
         this.animator.SetTrigger("Exit");
         StartCoroutine(DisableLevel());
     }
 
     private IEnumerator DisableLevel()
     {
-        yield return new WaitForSeconds(1.01f);
+        yield return new WaitForSeconds(2.01f);
         this.gameObject.SetActive(false);
         LevelManager.instance.navMeshSurface.BuildNavMesh();
     }

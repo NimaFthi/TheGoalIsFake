@@ -10,13 +10,10 @@ public class FakeEnemy : MonoBehaviour
     private Animator fakeEnemyAnim;
 
     //destinations 
-    public Transform playerTransform;
-    public Transform startTransform;
-    public Transform runAwayTransform;
     private Transform target;
     
     //stats
-    [SerializeField] private float DelayBeforeRunningAway = 0.5f;
+    [SerializeField] private float delayBeforeRunningAway = 0.5f;
 
     private bool isUsed;
     [HideInInspector] public bool isTransforming;
@@ -33,8 +30,10 @@ public class FakeEnemy : MonoBehaviour
 
     private void Start()
     {
+        // transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].fakeEnemySpawnPos.position;
         agent = GetComponent<NavMeshAgent>();
         fakeEnemyAnim = GetComponent<Animator>();
+        // agent.enabled = true;
     }
 
     #region Set Destination
@@ -121,7 +120,7 @@ public class FakeEnemy : MonoBehaviour
         isTransforming = true;
         fakeEnemyAnim.SetTrigger("TransformToGoal");
 
-        yield return new WaitForSeconds(DelayBeforeRunningAway);
+        yield return new WaitForSeconds(delayBeforeRunningAway);
         
         gameObject.tag = "Goal";
         isUsed = true;

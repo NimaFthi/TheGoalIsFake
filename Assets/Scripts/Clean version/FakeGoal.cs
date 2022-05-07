@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,8 +10,6 @@ public class FakeGoal : MonoBehaviour
     private Animator fakeGoalAnim;
 
     //destinations
-    public Transform playerTransform;
-    public Transform startTransform;
     private Transform target;
 
     [HideInInspector] public bool isUsed;
@@ -27,11 +26,13 @@ public class FakeGoal : MonoBehaviour
     }
 
     private FollowState followState;
-
+    
     private void Start()
     {
+        // transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].fakeGoalStartPos.position;
         agent = GetComponent<NavMeshAgent>();
         fakeGoalAnim = GetComponent<Animator>();
+        // agent.enabled = true;
     }
 
     #region Set Destination

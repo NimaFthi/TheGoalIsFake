@@ -1097,7 +1097,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7064202840826128217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 2, z: -5.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7064202840057392983}
@@ -1170,10 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8197ded3fe07d468d6101b329f2012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  startTransform: {fileID: 0}
-  runAwayTransform: {fileID: 0}
-  DelayBeforeRunningAway: 0.5
+  delayBeforeRunningAway: 0.5
   isTransforming: 0
 --- !u!1 &7064202840880710921
 GameObject:
