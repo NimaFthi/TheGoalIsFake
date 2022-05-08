@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject playerGfx;
     [SerializeField] private GameObject dieVfx;
+    [SerializeField] private GameObject spawnVfx;
     [SerializeField] private Collider playerCol;
     //[SerializeField] private GameObject spawnVfx;
     
@@ -82,9 +83,10 @@ public class PlayerManager : MonoBehaviour
         playerCol.enabled = false;
         
         transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].playerSpawnPos.position;
-        
+
         yield return new WaitForSeconds(reSpawnTime);
         
+        spawnVfx.SetActive(true);
         playerGfx.SetActive(true);
         playerCol.enabled = true;
         canMove = true;
@@ -115,6 +117,7 @@ public class PlayerManager : MonoBehaviour
         isTouchedGoal = false;
         transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].playerSpawnPos.position;
         canMove = true;
+        spawnVfx.SetActive(true);
         playerGfx.SetActive(true);
         playerCol.enabled = true;
     }

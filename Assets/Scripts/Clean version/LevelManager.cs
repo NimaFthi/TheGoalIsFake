@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
 
     //components
     public NavMeshSurface navMeshSurface;
-    private SaveAndLoad saveAndLoad;
+    [SerializeField] private Animator camAnimator;
 
     public bool firstTime = true;
     public int currentLevel;
@@ -37,42 +37,67 @@ public class LevelManager : MonoBehaviour
     private GameObject currentFakeEnemy;
     private GameObject currentFakeGoal;
 
-
+    public bool colorCam;
+    
     private void OnEnable()
     {
+        PlayerManager.instance.OnFirstTouchToGoal += OnFirstTouchToGoal;
         PlayerManager.instance.OnSecondTouchToGoal += OnSecondTouchToGoal;
+        PlayerManager.instance.OnPlayerDeath += OnPLayerDeath;
     }
 
     private void OnDisable()
     {
+        PlayerManager.instance.OnFirstTouchToGoal -= OnFirstTouchToGoal;
         PlayerManager.instance.OnSecondTouchToGoal -= OnSecondTouchToGoal;
+        PlayerManager.instance.OnPlayerDeath -= OnPLayerDeath;
     }
 
     private void Start()
     {
-        saveAndLoad = GetComponent<SaveAndLoad>();
+        colorCam = NewGameManager.instance.colorCam;
         numberOfLevels = levels.Count;
 
-        saveAndLoad.Load();
+        SaveAndLoad.instance.Load();
         currentLevel = startLevel;
-        
+
         levels[startLevel].StartLevel();
         navMeshSurface.BuildNavMesh();
         PlayerManager.instance.EnablePlayer();
         SpawnFakes();
     }
+    
+    private void OnFirstTouchToGoal()
+    {
+        SoundManager.Instance.BGPlayHard();
+        if(!colorCam) return;
+        camAnimator.SetBool("Color", true);
+    }
+
+    private void OnPLayerDeath()
+    {
+        SoundManager.Instance.BGPlayLight();
+        if(!colorCam) return;
+        camAnimator.SetBool("Color", false);
+    }
 
     private void OnSecondTouchToGoal()
     {
+        SoundManager.Instance.BGPlayLight();
         if (currentLevel == numberOfLevels - 1)
         {
             NewGameManager.instance.LoadEndMenu();
             return;
         }
+
+        if (colorCam)
+        {
+            camAnimator.SetBool("Color", false);
+        }
         PlayerManager.instance.DisablePlayer();
         levels[currentLevel].ExitLevel();
         currentLevel++;
-        saveAndLoad.Save();
+        SaveAndLoad.instance.Save();
         DestroyFakes();
         levels[currentLevel].StartLevel();
     }

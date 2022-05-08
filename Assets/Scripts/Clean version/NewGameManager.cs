@@ -22,18 +22,17 @@ public class NewGameManager : MonoBehaviour
             return _instance;
         }
     }
-    
-    private SaveAndLoad saveAndLoad;
+
+    public bool colorCam;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        saveAndLoad = GetComponent<SaveAndLoad>();
     }
 
     public void LoadEndMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetSceneByName("EndMenu").buildIndex);
-        saveAndLoad.ResetSave();
+        SceneManager.LoadScene(2);
+        SaveAndLoad.instance.ResetSave();
     }
 }

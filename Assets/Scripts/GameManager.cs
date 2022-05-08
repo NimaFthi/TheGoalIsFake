@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         navMeshSurface.BuildNavMesh();
-        colorCamera = SoundManager.Instance.cameraColor;
         SoundManager.Instance.BGPlayLight();
     }
 

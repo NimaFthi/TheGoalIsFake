@@ -13,6 +13,11 @@ public class StartMenu : MonoBehaviour
     [SerializeField] private Slider _sfxSlider;
     [SerializeField] private GameObject settingsPnl;
 
+    private void Awake()
+    {
+        ToggleCamera();
+    }
+
     private void Start()
     {
         _musicSlider.value = SoundManager.Instance._bgVolume;
@@ -23,10 +28,12 @@ public class StartMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
     public void MusicSliderValueChange(float value)
     {
         SoundManager.Instance.SetBgVolume(value);
-    }     
+    }
+
     public void SfxSliderValueChange(float value)
     {
         SoundManager.Instance.SetSfxVolume(value);
@@ -39,7 +46,7 @@ public class StartMenu : MonoBehaviour
 
     public void ToggleCamera()
     {
-        SoundManager.Instance.cameraColor = colorCam.isOn;
+        NewGameManager.instance.colorCam = colorCam.isOn;
     }
 
     public void SettingPnl()
