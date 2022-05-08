@@ -13,6 +13,14 @@ public class FakeEnemy : MonoBehaviour
     private Transform target;
     
     //stats
+    [SerializeField] private float enemySpeed = 12f;
+    [SerializeField] private float enemyAcceleration = 10f;
+    [SerializeField] private float enemyAngularSpeed = 360f;
+    
+    [SerializeField] private float goalSpeed = 12f;
+    [SerializeField] private float goalAcceleration = 10f;
+    [SerializeField] private float goalAngularSpeed = 360f;
+    
     [SerializeField] private float delayBeforeRunningAway = 0.5f;
 
     private bool isUsed;
@@ -30,10 +38,10 @@ public class FakeEnemy : MonoBehaviour
 
     private void Start()
     {
-        // transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].fakeEnemySpawnPos.position;
         agent = GetComponent<NavMeshAgent>();
         fakeEnemyAnim = GetComponent<Animator>();
-        // agent.enabled = true;
+        
+        SetAgentStats(enemySpeed,enemyAcceleration,enemyAngularSpeed);
     }
 
     #region Set Destination
@@ -113,6 +121,7 @@ public class FakeEnemy : MonoBehaviour
         fakeEnemyAnim.SetTrigger("TransformToEnemy");
         isUsed = false;
         gameObject.tag = "Enemy";
+        SetAgentStats(enemySpeed,enemyAcceleration,enemyAngularSpeed);
     }
 
     private IEnumerator TransformToGoal()
@@ -124,7 +133,15 @@ public class FakeEnemy : MonoBehaviour
         
         gameObject.tag = "Goal";
         isUsed = true;
+        SetAgentStats(goalSpeed,goalAcceleration,goalAngularSpeed);
         isTransforming = false;
+    }
+
+    private void SetAgentStats(float speed , float acceleration,float angularSpeed)
+    {
+        agent.speed = speed;
+        agent.acceleration = acceleration;
+        agent.angularSpeed = angularSpeed;
     }
     
     #endregion

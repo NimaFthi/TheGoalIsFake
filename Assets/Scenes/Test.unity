@@ -64545,7 +64545,7 @@ MonoBehaviour:
   playerGfx: {fileID: 7879382234976779199}
   dieVfx: {fileID: 7143412221166565872, guid: b828870966c63fc4dac5c1ee00c60950, type: 3}
   playerCol: {fileID: 519246743859592249}
-  reSpawnTime: 5
+  reSpawnTime: 4
   delayBeforeCanMoveAgain: 1
   delayBeforeDetectingCollision: 0.1
   isDead: 0

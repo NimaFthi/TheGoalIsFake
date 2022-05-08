@@ -1170,6 +1170,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8197ded3fe07d468d6101b329f2012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpeed: 8
+  enemyAcceleration: 14
+  enemyAngularSpeed: 720
+  goalSpeed: 20
+  goalAcceleration: 15
+  goalAngularSpeed: 1440
   delayBeforeRunningAway: 0.5
   isTransforming: 0
 --- !u!1 &7064202840880710921

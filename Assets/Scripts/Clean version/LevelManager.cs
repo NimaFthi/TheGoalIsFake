@@ -53,17 +53,6 @@ public class LevelManager : MonoBehaviour
         saveAndLoad = GetComponent<SaveAndLoad>();
         numberOfLevels = levels.Count;
 
-        if (firstTime)
-        {
-            startLevel = 0;
-            currentLevel = 0;
-            firstTime = false;
-        }
-        else
-        {
-            currentLevel = startLevel;
-        }
-
         saveAndLoad.Load();
         currentLevel = startLevel;
         
@@ -77,8 +66,7 @@ public class LevelManager : MonoBehaviour
     {
         if (currentLevel == numberOfLevels - 1)
         {
-            //TODO : Load end menu
-            Debug.Log(" DONE !");
+            NewGameManager.instance.LoadEndMenu();
             return;
         }
         PlayerManager.instance.DisablePlayer();
