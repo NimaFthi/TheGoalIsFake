@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour
     {
         colorCam = NewGameManager.instance.colorCam;
         numberOfLevels = levels.Count;
-
+        
         SaveAndLoad.instance.Load();
         currentLevel = startLevel;
 
