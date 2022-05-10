@@ -20,8 +20,8 @@ public class StartMenu : MonoBehaviour
 
     private void Start()
     {
-        _musicSlider.value = SoundManager.Instance._bgVolume;
-        _sfxSlider.value = SoundManager.Instance._sfxVolume;
+        _musicSlider.value = SoundManager.instance._bgVolume;
+        _sfxSlider.value = SoundManager.instance._sfxVolume;
     }
 
     public void PlayButton()
@@ -31,17 +31,17 @@ public class StartMenu : MonoBehaviour
 
     public void MusicSliderValueChange(float value)
     {
-        SoundManager.Instance.SetBgVolume(value);
+        SoundManager.instance.SetBgVolume(value);
     }
 
     public void SfxSliderValueChange(float value)
     {
-        SoundManager.Instance.SetSfxVolume(value);
+        SoundManager.instance.SetSfxVolume(value);
     }
 
     public void MuteAudio()
     {
-        SoundManager.Instance.Mute(mute.isOn);
+        SoundManager.instance.Mute(mute.isOn);
     }
 
     public void ToggleCamera()

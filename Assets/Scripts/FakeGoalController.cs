@@ -48,7 +48,7 @@ public class FakeGoalController : MonoBehaviour
         {
             GameManager.Instance.camAnimator.SetBool("Color", true);
         }
-        SoundManager.Instance.BGPlayHard();
+        SoundManager.instance.BGPlayHard();
         yield return new WaitForSeconds(1.5f);
         isUsed = true;
         gameObject.tag = "Enemy";
@@ -83,7 +83,7 @@ public class FakeGoalController : MonoBehaviour
         isTransforming = true;
         fakeGoalAnim.SetTrigger("TransformToGoal");
         GameManager.Instance.camAnimator.SetBool("Color", false);
-        SoundManager.Instance.BGPlayLight();
+        SoundManager.instance.BGPlayLight();
         yield return new WaitForSeconds(1f);
         isUsed = false;
         gameObject.tag = "Goal";

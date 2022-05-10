@@ -26,13 +26,11 @@ public class FakeGoal : MonoBehaviour
     }
 
     private FollowState followState;
-    
+
     private void Start()
     {
-        // transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].fakeGoalStartPos.position;
         agent = GetComponent<NavMeshAgent>();
         fakeGoalAnim = GetComponent<Animator>();
-        // agent.enabled = true;
     }
 
     #region Set Destination
@@ -122,10 +120,11 @@ public class FakeGoal : MonoBehaviour
         fakeGoalAnim.SetTrigger("TransformToGoal");
 
         yield return new WaitForSeconds(PlayerManager.instance.delayBeforeDetectingCollision);
-        
+
         isUsed = false;
         gameObject.tag = "Goal";
     }
 
     #endregion
+    
 }

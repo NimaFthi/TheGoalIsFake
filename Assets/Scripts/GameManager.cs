@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         navMeshSurface.BuildNavMesh();
-        SoundManager.Instance.BGPlayLight();
+        SoundManager.instance.BGPlayLight();
     }
 
     private void Update()
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(playerController.MoveToNextLevel());
         StartCoroutine(LevelHandler.Instance.NextLevelTransition());
         camAnimator.SetBool("Color",false);
-        SoundManager.Instance.BGPlayLight();
+        SoundManager.instance.BGPlayLight();
     }
 
     public void LoadEndMenu()

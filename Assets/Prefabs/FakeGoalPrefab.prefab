@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fa4f654f539f2448234801d2b26e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dieVfx: {fileID: 7143412221166565872, guid: 61dc395b7a656d74089708998617fe3a, type: 3}
   isUsed: 0
   isTransforming: 0
   delayBeforeChasingPlayer: 0.5

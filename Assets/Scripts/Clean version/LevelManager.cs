@@ -25,6 +25,9 @@ public class LevelManager : MonoBehaviour
     //components
     public NavMeshSurface navMeshSurface;
     [SerializeField] private Animator camAnimator;
+    [SerializeField] private LevelUI levelUI;
+    [SerializeField] private GameObject enemyDieVfx;
+    [SerializeField] private GameObject goalDieVfx;
 
     public bool firstTime = true;
     public int currentLevel;
@@ -38,7 +41,7 @@ public class LevelManager : MonoBehaviour
     private GameObject currentFakeGoal;
 
     public bool colorCam;
-    
+
     private void OnEnable()
     {
         PlayerManager.instance.OnFirstTouchToGoal += OnFirstTouchToGoal;
@@ -56,34 +59,35 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         colorCam = NewGameManager.instance.colorCam;
+
         numberOfLevels = levels.Count;
-        
         SaveAndLoad.instance.Load();
         currentLevel = startLevel;
-
+        levelUI.SetLevelNum(currentLevel);
         levels[startLevel].StartLevel();
+
         navMeshSurface.BuildNavMesh();
         PlayerManager.instance.EnablePlayer();
         SpawnFakes();
     }
-    
+
     private void OnFirstTouchToGoal()
     {
-        SoundManager.Instance.BGPlayHard();
-        if(!colorCam) return;
+        SoundManager.instance.BGPlayHard();
+        if (!colorCam) return;
         camAnimator.SetBool("Color", true);
     }
 
     private void OnPLayerDeath()
     {
-        SoundManager.Instance.BGPlayLight();
-        if(!colorCam) return;
+        SoundManager.instance.BGPlayLight();
+        if (!colorCam) return;
         camAnimator.SetBool("Color", false);
     }
 
     private void OnSecondTouchToGoal()
     {
-        SoundManager.Instance.BGPlayLight();
+        SoundManager.instance.BGPlayLight();
         if (currentLevel == numberOfLevels - 1)
         {
             NewGameManager.instance.LoadEndMenu();
@@ -94,11 +98,13 @@ public class LevelManager : MonoBehaviour
         {
             camAnimator.SetBool("Color", false);
         }
+
         PlayerManager.instance.DisablePlayer();
         levels[currentLevel].ExitLevel();
-        currentLevel++;
-        SaveAndLoad.instance.Save();
         DestroyFakes();
+        currentLevel++;
+        levelUI.SetLevelNum(currentLevel);
+        SaveAndLoad.instance.Save();
         levels[currentLevel].StartLevel();
     }
 
@@ -112,7 +118,18 @@ public class LevelManager : MonoBehaviour
 
     private void DestroyFakes()
     {
+        EndLevelVFX();
         Destroy(currentFakeEnemy);
         Destroy(currentFakeGoal);
+    }
+
+    private void EndLevelVFX()
+    {
+        var enemyDieEffect = Instantiate(enemyDieVfx, currentFakeGoal.transform.position, Quaternion.identity);
+        enemyDieEffect.transform.SetParent(levels[currentLevel].transform);
+        Destroy(enemyDieEffect, 2f);
+        var goalDieEffect = Instantiate(goalDieVfx, currentFakeEnemy.transform.position, Quaternion.identity);
+        goalDieEffect.transform.SetParent(levels[currentLevel].transform);
+        Destroy(goalDieEffect, 2f);
     }
 }

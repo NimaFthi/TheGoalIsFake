@@ -17,7 +17,7 @@ public class SoundManager : MonoBehaviour
     
     private static SoundManager _instance;
 
-    public static SoundManager Instance
+    public static SoundManager instance
     {
         private set => _instance = value;
         get

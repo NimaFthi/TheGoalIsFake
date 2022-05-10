@@ -1170,6 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8197ded3fe07d468d6101b329f2012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dieVfx: {fileID: 7143412221166565872, guid: 5956efef06d6f6849a7c4897d6993f68, type: 3}
   enemySpeed: 10
   enemyAcceleration: 14
   enemyAngularSpeed: 1080
