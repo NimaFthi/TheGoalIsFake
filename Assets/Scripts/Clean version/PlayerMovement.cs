@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 600f;
 
     private Vector3 input;
-    
+
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         var horizontal = joystick.Horizontal;
         var vertical = joystick.Vertical;
-        input = new Vector3(horizontal, 0, vertical).normalized.ToIso();
+        input = new Vector3(horizontal, 0, vertical).ToIso().normalized;
     }
 
     private void Move()

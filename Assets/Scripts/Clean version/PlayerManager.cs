@@ -21,13 +21,11 @@ public class PlayerManager : MonoBehaviour
     }
 
     //components
-    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject playerGfx;
     [SerializeField] private GameObject dieVfx;
     [SerializeField] private GameObject spawnVfx;
     [SerializeField] private Collider playerCol;
-    //[SerializeField] private GameObject spawnVfx;
-    
+
     //stats
     [SerializeField] private float reSpawnTime = 5f;
     public float delayBeforeCanMoveAgain = 1f;

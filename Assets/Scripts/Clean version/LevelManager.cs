@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,7 +31,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject enemyDieVfx;
     [SerializeField] private GameObject goalDieVfx;
 
-    public bool firstTime = true;
+    public bool isTutorial = true;
     public int currentLevel;
     public int startLevel;
     private int numberOfLevels;
@@ -39,6 +41,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject fakeGoalPrefab;
     private GameObject currentFakeEnemy;
     private GameObject currentFakeGoal;
+    [SerializeField] private float delayBetweenSpawningCharacters = 1f;
 
     public bool colorCam;
 
@@ -59,6 +62,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         colorCam = NewGameManager.instance.colorCam;
+        SaveAndLoad.instance.ResetSave();
 
         numberOfLevels = levels.Count;
         SaveAndLoad.instance.Load();
@@ -68,6 +72,11 @@ public class LevelManager : MonoBehaviour
 
         navMeshSurface.BuildNavMesh();
         PlayerManager.instance.EnablePlayer();
+        if (isTutorial && currentLevel == 0)
+        {
+            Tutorial();
+            return;
+        }
         SpawnFakes();
     }
 
@@ -108,12 +117,19 @@ public class LevelManager : MonoBehaviour
         levels[currentLevel].StartLevel();
     }
 
-    public void SpawnFakes()
+    public async void SpawnFakes()
     {
-        currentFakeEnemy = Instantiate(fakeEnemyPrefab, levels[currentLevel].fakeEnemySpawnPos);
-        currentFakeEnemy.transform.localPosition = Vector3.zero;
+        await Task.Delay(TimeSpan.FromMilliseconds(1));
+        PlayerManager.instance.canMove = false;
+        
+        await Task.Delay(TimeSpan.FromSeconds(delayBetweenSpawningCharacters));
         currentFakeGoal = Instantiate(fakeGoalPrefab, levels[currentLevel].fakeGoalStartPos);
         currentFakeGoal.transform.localPosition = Vector3.zero;
+
+        await Task.Delay(TimeSpan.FromSeconds(delayBetweenSpawningCharacters));
+        currentFakeEnemy = Instantiate(fakeEnemyPrefab, levels[currentLevel].fakeEnemySpawnPos);
+        currentFakeEnemy.transform.localPosition = Vector3.zero;
+        PlayerManager.instance.canMove = true;
     }
 
     private void DestroyFakes()
@@ -131,5 +147,16 @@ public class LevelManager : MonoBehaviour
         var goalDieEffect = Instantiate(goalDieVfx, currentFakeEnemy.transform.position, Quaternion.identity);
         goalDieEffect.transform.SetParent(levels[currentLevel].transform);
         Destroy(goalDieEffect, 2f);
+    }
+
+    private async void Tutorial()
+    {
+        levelUI.HandleMovementTutorial(true);
+
+        await Task.Delay(TimeSpan.FromSeconds(10));
+
+        levelUI.HandleMovementTutorial(false);
+        levelUI.HandleFakesIntro(true);
+        SpawnFakes();
     }
 }
