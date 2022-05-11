@@ -117,6 +117,10 @@ public class LevelManager : MonoBehaviour
         levelUI.SetLevelNum(currentLevel);
         SaveAndLoad.instance.Save();
         levels[currentLevel].StartLevel();
+        
+        if(!isTutorial) return;
+        isTutorial = false;
+        levelUI.HandleFakesIntro(false);
     }
 
     public async void SpawnFakes()
@@ -127,6 +131,11 @@ public class LevelManager : MonoBehaviour
         await Task.Delay(TimeSpan.FromSeconds(delayBetweenSpawningCharacters));
         currentFakeGoal = Instantiate(fakeGoalPrefab, levels[currentLevel].fakeGoalStartPos);
         currentFakeGoal.transform.localPosition = Vector3.zero;
+        if (isTutorial)
+        {
+            var fakeGoal = currentFakeGoal.GetComponent<FakeGoal>();
+            fakeGoal.goalCanvas.SetActive(true);
+        }
 
         await Task.Delay(TimeSpan.FromSeconds(delayBetweenSpawningCharacters));
         currentFakeEnemy = Instantiate(fakeEnemyPrefab, levels[currentLevel].fakeEnemySpawnPos);
@@ -165,6 +174,7 @@ public class LevelManager : MonoBehaviour
 
         levelUI.HandleMovementTutorial(false);
         levelUI.HandleFakesIntro(true);
+        PlayerManager.instance.EnablePlayer();
         SpawnFakes();
     }
 }

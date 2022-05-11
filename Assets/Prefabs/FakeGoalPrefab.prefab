@@ -274,6 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fa4f654f539f2448234801d2b26e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalCanvas: {fileID: 7545447147356316691}
   isUsed: 0
   isTransforming: 0
   delayBeforeChasingPlayer: 0.5
@@ -291,12 +292,12 @@ GameObject:
   - component: {fileID: 443623665680791753}
   - component: {fileID: 3413425615904276651}
   m_Layer: 6
-  m_Name: EnemyCanvas
+  m_Name: GoalCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5136753647259739615
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1752,7 +1753,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enemy
+  m_text: Goal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cd06b61c87d6634b9392b49250d39ca, type: 2}
   m_sharedMaterial: {fileID: -8285100885560707907, guid: 4cd06b61c87d6634b9392b49250d39ca, type: 2}

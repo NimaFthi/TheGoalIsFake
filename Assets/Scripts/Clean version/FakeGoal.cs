@@ -8,6 +8,7 @@ public class FakeGoal : MonoBehaviour
     //components
     private NavMeshAgent agent;
     private Animator fakeGoalAnim;
+    public GameObject goalCanvas;
 
     //destinations
     private Transform target;
@@ -94,6 +95,7 @@ public class FakeGoal : MonoBehaviour
     private void OnFirstTouchToGoalAction()
     {
         StartCoroutine(TransformToEnemy());
+        goalCanvas.SetActive(false);
     }
 
     private IEnumerator TransformToEnemy()
