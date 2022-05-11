@@ -9,6 +9,7 @@ public class FakeEnemy : MonoBehaviour
     //components
     private NavMeshAgent agent;
     private Animator fakeEnemyAnim;
+    public GameObject enemyCanvas;
 
     //destinations 
     private Transform target;
@@ -115,6 +116,7 @@ public class FakeEnemy : MonoBehaviour
     private void OnFirstTouchToGoalAction()
     {
         StartCoroutine(TransformToGoal());
+        enemyCanvas.SetActive(false);
     }
 
     private void TransformToEnemy()

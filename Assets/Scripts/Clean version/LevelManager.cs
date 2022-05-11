@@ -30,6 +30,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private LevelUI levelUI;
     [SerializeField] private GameObject enemyDieVfx;
     [SerializeField] private GameObject goalDieVfx;
+    public Transform camPivot;
+    
 
     public bool isTutorial = true;
     public int currentLevel;
@@ -129,6 +131,12 @@ public class LevelManager : MonoBehaviour
         await Task.Delay(TimeSpan.FromSeconds(delayBetweenSpawningCharacters));
         currentFakeEnemy = Instantiate(fakeEnemyPrefab, levels[currentLevel].fakeEnemySpawnPos);
         currentFakeEnemy.transform.localPosition = Vector3.zero;
+        if (isTutorial)
+        {
+            var fakeEnemy = currentFakeEnemy.GetComponent<FakeEnemy>();
+            fakeEnemy.enemyCanvas.SetActive(true);
+        }
+        
         PlayerManager.instance.canMove = true;
     }
 

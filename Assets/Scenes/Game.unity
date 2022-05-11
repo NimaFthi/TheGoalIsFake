@@ -39318,6 +39318,7 @@ MonoBehaviour:
   levelUI: {fileID: 1109257130}
   enemyDieVfx: {fileID: 7143412221166565872, guid: 61dc395b7a656d74089708998617fe3a, type: 3}
   goalDieVfx: {fileID: 7143412221166565872, guid: 5956efef06d6f6849a7c4897d6993f68, type: 3}
+  camPivot: {fileID: 1254612250}
   isTutorial: 1
   currentLevel: 0
   startLevel: 0
