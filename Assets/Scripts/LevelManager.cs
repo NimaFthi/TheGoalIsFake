@@ -64,8 +64,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        colorCam = NewGameManager.instance.colorCam;
-        //SaveAndLoad.instance.ResetSave();
+        colorCam = GameManager.instance.colorCam;
+        SaveAndLoad.instance.ResetSave();
 
         numberOfLevels = levels.Count;
         SaveAndLoad.instance.Load();
@@ -104,7 +104,7 @@ public class LevelManager : MonoBehaviour
         SoundManager.instance.BGPlayLight();
         if (currentLevel == numberOfLevels - 1)
         {
-            NewGameManager.instance.LoadEndMenu();
+            GameManager.instance.LoadEndMenu();
             return;
         }
 

@@ -1,17 +1,18 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StartMenu : MonoBehaviour
+public class StartUI : MonoBehaviour
 {
     [SerializeField] private Toggle mute;
     [SerializeField] private Toggle colorCam;
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _sfxSlider;
     [SerializeField] private GameObject settingsPnl;
+
 
     private void Awake()
     {
@@ -46,7 +47,7 @@ public class StartMenu : MonoBehaviour
 
     public void ToggleCamera()
     {
-        NewGameManager.instance.colorCam = colorCam.isOn;
+        GameManager.instance.colorCam = colorCam.isOn;
     }
 
     public void SettingPnl()
