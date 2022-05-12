@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -77,7 +76,7 @@ public class LevelManager : MonoBehaviour
         PlayerManager.instance.EnablePlayer();
         if (isTutorial && currentLevel == 0)
         {
-            Tutorial();
+            MovementAndIntroTutorial();
             return;
         }
         
@@ -88,8 +87,12 @@ public class LevelManager : MonoBehaviour
     private void OnFirstTouchToGoal()
     {
         SoundManager.instance.BGPlayHard();
-        if (!colorCam) return;
-        camAnimator.SetBool("Color", true);
+        if (colorCam)
+        {
+            camAnimator.SetBool("Color", true);
+        }
+        if(!isTutorial) return;
+        GoalIsFakeTutorial();
     }
 
     private void OnPLayerDeath()
@@ -123,18 +126,18 @@ public class LevelManager : MonoBehaviour
         
         if(!isTutorial) return;
         isTutorial = false;
-        levelUI.HandleFakesIntro(false);
+        levelUI.HandleGoalIsFakeTutorial(false);
     }
 
     public async void SpawnFakes()
     {
         tokenSource = new CancellationTokenSource();
-        var spawnCancellationToken = tokenSource.Token;
+        var cancellationToken = tokenSource.Token;
         
-        await Task.Delay(1,spawnCancellationToken);
+        await Task.Delay(1,cancellationToken);
         PlayerManager.instance.canMove = false;
         
-        await Task.Delay(delayBetweenSpawningCharacters,spawnCancellationToken);
+        await Task.Delay(delayBetweenSpawningCharacters,cancellationToken);
         currentFakeGoal = Instantiate(fakeGoalPrefab, levels[currentLevel].fakeGoalStartPos);
         currentFakeGoal.transform.localPosition = Vector3.zero;
         if (isTutorial)
@@ -143,7 +146,7 @@ public class LevelManager : MonoBehaviour
             fakeGoal.goalCanvas.SetActive(true);
         }
 
-        await Task.Delay(delayBetweenSpawningCharacters,spawnCancellationToken);
+        await Task.Delay(delayBetweenSpawningCharacters,cancellationToken);
         currentFakeEnemy = Instantiate(fakeEnemyPrefab, levels[currentLevel].fakeEnemySpawnPos);
         currentFakeEnemy.transform.localPosition = Vector3.zero;
         if (isTutorial)
@@ -172,15 +175,25 @@ public class LevelManager : MonoBehaviour
         Destroy(goalDieEffect, 2f);
     }
 
-    private async void Tutorial()
+    private async void MovementAndIntroTutorial()
     {
+        tokenSource = new CancellationTokenSource();
+        var cancellationToken = tokenSource.Token;
         levelUI.HandleMovementTutorial(true);
 
-        await Task.Delay(TimeSpan.FromSeconds(10));
+        await Task.Delay(10000,cancellationToken);
 
         levelUI.HandleMovementTutorial(false);
         levelUI.HandleFakesIntro(true);
         PlayerManager.instance.EnablePlayer();
         SpawnFakes();
     }
+
+    private void GoalIsFakeTutorial()
+    {
+        levelUI.HandleFakesIntro(false);
+        levelUI.HandleGoalIsFakeTutorial(true);
+    }
+    
+    
 }

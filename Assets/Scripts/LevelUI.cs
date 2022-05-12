@@ -12,6 +12,7 @@ public class LevelUI : MonoBehaviour
     [SerializeField] private GameObject movementTxt;
     [SerializeField] private GameObject playerCanvas;
     [SerializeField] private GameObject introTxt;
+    [SerializeField] private GameObject goalIsFake;
     [SerializeField] private Button backBtn;
     
     public void SetLevelNum(int lvlNum)
@@ -34,5 +35,10 @@ public class LevelUI : MonoBehaviour
     public void HandleFakesIntro(bool state)
     {
         introTxt.SetActive(state);
+    }
+    
+    public void HandleGoalIsFakeTutorial(bool state)
+    {
+        goalIsFake.SetActive(state);
     }
 }
