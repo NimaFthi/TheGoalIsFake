@@ -30,8 +30,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private LevelUI levelUI;
     [SerializeField] private GameObject enemyDieVfx;
     [SerializeField] private GameObject goalDieVfx;
-    public Transform camPivot;
-    
+    public Camera mainCam;
+
 
     public bool isTutorial = true;
     public int currentLevel;
@@ -43,7 +43,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject fakeGoalPrefab;
     private GameObject currentFakeEnemy;
     private GameObject currentFakeGoal;
-    [SerializeField] private float delayBetweenSpawningCharacters = 1f;
+    [SerializeField] private int delayBetweenSpawningCharacters = 1000;
+    public CancellationTokenSource tokenSource;
 
     public bool colorCam;
 
@@ -64,7 +65,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         colorCam = NewGameManager.instance.colorCam;
-        SaveAndLoad.instance.ResetSave();
+        //SaveAndLoad.instance.ResetSave();
 
         numberOfLevels = levels.Count;
         SaveAndLoad.instance.Load();
@@ -79,6 +80,8 @@ public class LevelManager : MonoBehaviour
             Tutorial();
             return;
         }
+        
+        isTutorial = false;
         SpawnFakes();
     }
 
@@ -125,10 +128,13 @@ public class LevelManager : MonoBehaviour
 
     public async void SpawnFakes()
     {
-        await Task.Delay(TimeSpan.FromMilliseconds(1));
+        tokenSource = new CancellationTokenSource();
+        var spawnCancellationToken = tokenSource.Token;
+        
+        await Task.Delay(1,spawnCancellationToken);
         PlayerManager.instance.canMove = false;
         
-        await Task.Delay(TimeSpan.FromSeconds(delayBetweenSpawningCharacters));
+        await Task.Delay(delayBetweenSpawningCharacters,spawnCancellationToken);
         currentFakeGoal = Instantiate(fakeGoalPrefab, levels[currentLevel].fakeGoalStartPos);
         currentFakeGoal.transform.localPosition = Vector3.zero;
         if (isTutorial)
@@ -137,7 +143,7 @@ public class LevelManager : MonoBehaviour
             fakeGoal.goalCanvas.SetActive(true);
         }
 
-        await Task.Delay(TimeSpan.FromSeconds(delayBetweenSpawningCharacters));
+        await Task.Delay(delayBetweenSpawningCharacters,spawnCancellationToken);
         currentFakeEnemy = Instantiate(fakeEnemyPrefab, levels[currentLevel].fakeEnemySpawnPos);
         currentFakeEnemy.transform.localPosition = Vector3.zero;
         if (isTutorial)

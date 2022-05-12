@@ -31586,7 +31586,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 280dbe2f29370cf4bbd029d90e8d07c1, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -39318,7 +39318,7 @@ MonoBehaviour:
   levelUI: {fileID: 1109257130}
   enemyDieVfx: {fileID: 7143412221166565872, guid: 61dc395b7a656d74089708998617fe3a, type: 3}
   goalDieVfx: {fileID: 7143412221166565872, guid: 5956efef06d6f6849a7c4897d6993f68, type: 3}
-  camPivot: {fileID: 1254612250}
+  mainCam: {fileID: 746696902}
   isTutorial: 1
   currentLevel: 0
   startLevel: 0
@@ -39356,7 +39356,7 @@ MonoBehaviour:
   - {fileID: 332368556}
   fakeEnemyPrefab: {fileID: 7064202840826128217, guid: b12191a48dd776249b64a0f1aecde05f, type: 3}
   fakeGoalPrefab: {fileID: 2179968418104353075, guid: 6000b03605c9e3b4893b5523393f5daf, type: 3}
-  delayBetweenSpawningCharacters: 1
+  delayBetweenSpawningCharacters: 1000
   colorCam: 0
 --- !u!114 &1109257130
 MonoBehaviour:
@@ -71032,7 +71032,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1981128976
 RectTransform:
