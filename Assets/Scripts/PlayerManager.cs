@@ -21,10 +21,12 @@ public class PlayerManager : MonoBehaviour
     }
 
     //components
+    [SerializeField] private Collider playerCol;
     [SerializeField] private GameObject playerGfx;
     [SerializeField] private GameObject dieVfx;
     [SerializeField] private GameObject spawnVfx;
-    [SerializeField] private Collider playerCol;
+    [SerializeField] private GameObject wallTrailVFX;
+    [SerializeField] private EffectObjectPool wallShockVFX;
 
     //stats
     [SerializeField] private float reSpawnTime = 5f;
@@ -71,6 +73,35 @@ public class PlayerManager : MonoBehaviour
                 isTouchedGoal = false;
             }
         }
+
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            print("khord");
+            var wallVFX = wallShockVFX.GetObject();
+            wallVFX.transform.position = other.contacts[0].point;
+            var rot = Quaternion.LookRotation(other.contacts[0].normal);
+            wallVFX.transform.rotation = rot;
+            wallVFX.SetActive(true);
+        }
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            print("traillll");
+            wallTrailVFX.SetActive(true);
+            wallTrailVFX.transform.position = other.contacts[0].point;
+            
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            wallTrailVFX.SetActive(false);
+        }
     }
 
     private IEnumerator ReSpawn()
@@ -79,6 +110,7 @@ public class PlayerManager : MonoBehaviour
         canMove = false;
         playerGfx.SetActive(false);
         playerCol.enabled = false;
+        wallTrailVFX.SetActive(false);
         
         transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].playerSpawnPos.position;
 
@@ -115,6 +147,7 @@ public class PlayerManager : MonoBehaviour
         isTouchedGoal = false;
         transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].playerSpawnPos.position;
         canMove = true;
+        wallTrailVFX.SetActive(false);
         spawnVfx.SetActive(true);
         playerGfx.SetActive(true);
         playerCol.enabled = true;
