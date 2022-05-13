@@ -27,7 +27,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        var gameManagersNum = FindObjectsOfType<GameManager>().Length;
+        if (gameManagersNum != 1)
+        {
+            Destroy(this.gameObject);
+        }
+        // if more then one singleton is in the scene
+        //destroy ourselves
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void LoadEndMenu()

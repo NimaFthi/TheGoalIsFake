@@ -31,7 +31,17 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        var soundManagersNum = FindObjectsOfType<SoundManager>().Length;
+        if (soundManagersNum != 1)
+        {
+            Destroy(this.gameObject);
+        }
+        // if more then one singleton is in the scene
+        //destroy ourselves
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
         _bgVolume = 0.5f;
         _sfxVolume = 0.5f;
     }
