@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private LevelUI levelUI;
     [SerializeField] private GameObject enemyDieVfx;
     [SerializeField] private GameObject goalDieVfx;
+    [SerializeField] private GameObject firstGuideEffect;
+    [SerializeField] private GameObject secondGuideEffect;
     public Camera mainCam;
 
 
@@ -128,6 +130,7 @@ public class LevelManager : MonoBehaviour
         if (!isTutorial) return;
         isTutorial = false;
         levelUI.HandleGoalIsFakeTutorial(false);
+        secondGuideEffect.SetActive(false);
     }
 
     public async void SpawnFakes()
@@ -186,6 +189,7 @@ public class LevelManager : MonoBehaviour
 
         levelUI.HandleMovementTutorial(false);
         levelUI.HandleFakesIntro(true);
+        firstGuideEffect.SetActive(true);
         PlayerManager.instance.EnablePlayer();
         SpawnFakes();
     }
@@ -196,7 +200,9 @@ public class LevelManager : MonoBehaviour
         var cancellationToken = tokenSource.Token;
 
         levelUI.HandleFakesIntro(false);
+        firstGuideEffect.SetActive(false);
         levelUI.HandleGoalIsFakeTutorial(true);
+        secondGuideEffect.SetActive(true);
         Time.timeScale = 0;
 
         await Task.Delay(5000, cancellationToken);
