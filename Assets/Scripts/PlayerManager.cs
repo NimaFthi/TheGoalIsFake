@@ -76,7 +76,6 @@ public class PlayerManager : MonoBehaviour
 
         if (other.gameObject.CompareTag("Wall"))
         {
-            print("khord");
             var wallVFX = wallShockVFX.GetObject();
             wallVFX.transform.position = other.contacts[0].point;
             var rot = Quaternion.LookRotation(other.contacts[0].normal);
@@ -87,21 +86,24 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.CompareTag("Wall"))
+        if (isDead)
         {
-            print("traillll");
-            wallTrailVFX.SetActive(true);
-            wallTrailVFX.transform.position = other.contacts[0].point;
-            
+            wallTrailVFX.SetActive(false);
+            return;
         }
+
+        if (!other.gameObject.CompareTag("Wall")) return;
+        
+        wallTrailVFX.transform.position = other.contacts[0].point;
+        wallTrailVFX.SetActive(true);
     }
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.CompareTag("Wall"))
-        {
-            wallTrailVFX.SetActive(false);
-        }
+        if (!other.gameObject.CompareTag("Wall")) return;
+        
+        wallTrailVFX.SetActive(false);
+        wallTrailVFX.transform.localPosition = Vector3.zero;
     }
 
     private IEnumerator ReSpawn()
@@ -109,9 +111,9 @@ public class PlayerManager : MonoBehaviour
         isDead = true;
         canMove = false;
         playerGfx.SetActive(false);
-        playerCol.enabled = false;
         wallTrailVFX.SetActive(false);
-        
+        playerCol.enabled = false;
+
         transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].playerSpawnPos.position;
 
         yield return new WaitForSeconds(reSpawnTime);
@@ -125,7 +127,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Die()
     {
-        
         var dieEffect = Instantiate(dieVfx, transform.position, Quaternion.identity);
         Destroy(dieEffect, 7f);
 
@@ -140,6 +141,7 @@ public class PlayerManager : MonoBehaviour
         canMove = false;
         playerGfx.SetActive(false);
         playerCol.enabled = false;
+        wallTrailVFX.SetActive(false);
     }
 
     public void EnablePlayer()
@@ -147,9 +149,9 @@ public class PlayerManager : MonoBehaviour
         isTouchedGoal = false;
         transform.position = LevelManager.instance.levels[LevelManager.instance.currentLevel].playerSpawnPos.position;
         canMove = true;
-        wallTrailVFX.SetActive(false);
         spawnVfx.SetActive(true);
         playerGfx.SetActive(true);
         playerCol.enabled = true;
+        wallTrailVFX.SetActive(false);
     }
 }

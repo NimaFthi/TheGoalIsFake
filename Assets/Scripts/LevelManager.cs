@@ -79,7 +79,7 @@ public class LevelManager : MonoBehaviour
             MovementAndIntroTutorial();
             return;
         }
-        
+
         isTutorial = false;
         SpawnFakes();
     }
@@ -91,7 +91,8 @@ public class LevelManager : MonoBehaviour
         {
             camAnimator.SetBool("Color", true);
         }
-        if(!isTutorial) return;
+
+        if (!isTutorial) return;
         GoalIsFakeTutorial();
     }
 
@@ -123,8 +124,8 @@ public class LevelManager : MonoBehaviour
         levelUI.SetLevelNum(currentLevel);
         SaveAndLoad.instance.Save();
         levels[currentLevel].StartLevel();
-        
-        if(!isTutorial) return;
+
+        if (!isTutorial) return;
         isTutorial = false;
         levelUI.HandleGoalIsFakeTutorial(false);
     }
@@ -133,11 +134,11 @@ public class LevelManager : MonoBehaviour
     {
         tokenSource = new CancellationTokenSource();
         var cancellationToken = tokenSource.Token;
-        
-        await Task.Delay(1,cancellationToken);
+
+        await Task.Delay(1, cancellationToken);
         PlayerManager.instance.canMove = false;
-        
-        await Task.Delay(delayBetweenSpawningCharacters,cancellationToken);
+
+        await Task.Delay(delayBetweenSpawningCharacters, cancellationToken);
         currentFakeGoal = Instantiate(fakeGoalPrefab, levels[currentLevel].fakeGoalStartPos);
         currentFakeGoal.transform.localPosition = Vector3.zero;
         if (isTutorial)
@@ -146,7 +147,7 @@ public class LevelManager : MonoBehaviour
             fakeGoal.goalCanvas.SetActive(true);
         }
 
-        await Task.Delay(delayBetweenSpawningCharacters,cancellationToken);
+        await Task.Delay(delayBetweenSpawningCharacters, cancellationToken);
         currentFakeEnemy = Instantiate(fakeEnemyPrefab, levels[currentLevel].fakeEnemySpawnPos);
         currentFakeEnemy.transform.localPosition = Vector3.zero;
         if (isTutorial)
@@ -154,7 +155,7 @@ public class LevelManager : MonoBehaviour
             var fakeEnemy = currentFakeEnemy.GetComponent<FakeEnemy>();
             fakeEnemy.enemyCanvas.SetActive(true);
         }
-        
+
         PlayerManager.instance.canMove = true;
     }
 
@@ -181,7 +182,7 @@ public class LevelManager : MonoBehaviour
         var cancellationToken = tokenSource.Token;
         levelUI.HandleMovementTutorial(true);
 
-        await Task.Delay(10000,cancellationToken);
+        await Task.Delay(10000, cancellationToken);
 
         levelUI.HandleMovementTutorial(false);
         levelUI.HandleFakesIntro(true);
@@ -189,11 +190,18 @@ public class LevelManager : MonoBehaviour
         SpawnFakes();
     }
 
-    private void GoalIsFakeTutorial()
+    private async void GoalIsFakeTutorial()
     {
+        tokenSource = new CancellationTokenSource();
+        var cancellationToken = tokenSource.Token;
+
         levelUI.HandleFakesIntro(false);
         levelUI.HandleGoalIsFakeTutorial(true);
+        Time.timeScale = 0;
+
+        await Task.Delay(5000, cancellationToken);
+
+        Time.timeScale = 1;
+        Debug.Log("test");
     }
-    
-    
 }
