@@ -5457,7 +5457,7 @@ GameObject:
   - component: {fileID: 165927149}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12952,7 +12952,7 @@ GameObject:
   - component: {fileID: 377316902}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23760,7 +23760,7 @@ MonoBehaviour:
   background: {fileID: 1965908228}
   handle: {fileID: 531196258}
   direction: 2
-  handleLimit: 0.4
+  handleLimit: 0.2
 --- !u!1 &695144482
 GameObject:
   m_ObjectHideFlags: 0
@@ -29790,7 +29790,7 @@ GameObject:
   - component: {fileID: 847672921}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41161,7 +41161,7 @@ GameObject:
   - component: {fileID: 1163365900}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42959,7 +42959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1201827080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50104,7 +50104,7 @@ GameObject:
   - component: {fileID: 1396721086}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56538,7 +56538,7 @@ GameObject:
   - component: {fileID: 1580549755}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57972,7 +57972,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apparently they've switched roles now run after the real
+  m_text: Oh no they've switched roles run after the real
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18536f0fce7f14a4bb1aabbfb84a7e4f, type: 2}
   m_sharedMaterial: {fileID: -7525721398219956895, guid: 18536f0fce7f14a4bb1aabbfb84a7e4f, type: 2}
@@ -58568,7 +58568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 268.00015, y: -29.00001}
+  m_AnchoredPosition: {x: 268.00015, y: -35}
   m_SizeDelta: {x: 550, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1628957672
@@ -63474,7 +63474,7 @@ GameObject:
   - component: {fileID: 1755920072}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69017,7 +69017,7 @@ GameObject:
   - component: {fileID: 1916701148}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74533,7 +74533,7 @@ GameObject:
   - component: {fileID: 2044121636}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76084,7 +76084,7 @@ GameObject:
   - component: {fileID: 2092554295}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77803,7 +77803,7 @@ GameObject:
   - component: {fileID: 2135838465}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78838,6 +78838,7 @@ MonoBehaviour:
   isDead: 0
   canDetectCollision: 1
   canMove: 1
+  wallEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!4 &7879382234976779184
 Transform:
   m_ObjectHideFlags: 0

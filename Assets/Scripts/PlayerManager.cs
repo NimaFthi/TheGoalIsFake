@@ -37,7 +37,9 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public bool canDetectCollision = true;
     [HideInInspector] public bool canMove = true;
     private bool isTouchedGoal;
-    
+
+    public Vector3 wallEffectOffset = Vector3.zero;
+
     //events
     public event Action OnFirstTouchToGoal;
     public event Action OnSecondTouchToGoal;
@@ -77,7 +79,7 @@ public class PlayerManager : MonoBehaviour
         if (other.gameObject.CompareTag("Wall"))
         {
             var wallVFX = wallShockVFX.GetObject();
-            wallVFX.transform.position = other.contacts[0].point;
+            wallVFX.transform.position = other.contacts[0].point + wallEffectOffset;
             var rot = Quaternion.LookRotation(other.contacts[0].normal);
             wallVFX.transform.rotation = rot;
             wallVFX.SetActive(true);
@@ -94,7 +96,7 @@ public class PlayerManager : MonoBehaviour
 
         if (!other.gameObject.CompareTag("Wall")) return;
         
-        wallTrailVFX.transform.position = other.contacts[0].point;
+        wallTrailVFX.transform.position = other.contacts[0].point + wallEffectOffset;
         wallTrailVFX.SetActive(true);
     }
 

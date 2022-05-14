@@ -31,14 +31,9 @@ public class PlayerMovement : MonoBehaviour
     {
         var horizontal = joystick.horizontal;
         var vertical = joystick.vertical;
-        
-        input = new Vector3(horizontal, 0, vertical).ToIso().normalized;
 
-        // var forward = Quaternion.AngleAxis(-45f, transform.up) * transform.right;
-        // var right = Quaternion.AngleAxis(-90f, transform.up) * forward;
-        // input = forward * horizontal + right * vertical;
-        // input.y = 0;
-        // input.Normalize();
+        input = new Vector3(horizontal, 0, vertical).ToIso();
+        input.Normalize();
     }
 
     private void Move()

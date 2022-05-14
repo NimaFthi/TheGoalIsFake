@@ -66,7 +66,6 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         colorCam = GameManager.instance.colorCam;
-        SaveAndLoad.instance.ResetSave();
 
         numberOfLevels = levels.Count;
         SaveAndLoad.instance.Load();
@@ -205,9 +204,8 @@ public class LevelManager : MonoBehaviour
         secondGuideEffect.SetActive(true);
         Time.timeScale = 0;
 
-        await Task.Delay(5000, cancellationToken);
+        await Task.Delay(2000, cancellationToken);
 
         Time.timeScale = 1;
-        Debug.Log("test");
     }
 }
