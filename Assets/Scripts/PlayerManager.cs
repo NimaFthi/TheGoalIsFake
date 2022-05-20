@@ -54,6 +54,7 @@ public class PlayerManager : MonoBehaviour
         {
             Die();
             StartCoroutine(ReSpawn());
+            LevelManager.instance.ShowInterstitialAdOnDeath();
         }
 
         if (other.gameObject.CompareTag("Enemy"))
@@ -132,10 +133,15 @@ public class PlayerManager : MonoBehaviour
         var dieEffect = Instantiate(dieVfx, transform.position, Quaternion.identity);
         Destroy(dieEffect, 7f);
 
-        if (!isTouchedGoal) return;
+        if (isTouchedGoal)
+        {
+            OnPlayerDeath?.Invoke();
+            isTouchedGoal = false;
+        }
         
-        OnPlayerDeath?.Invoke();
-        isTouchedGoal = false;
+        if(LevelManager.instance.isTutorial) return;
+        
+        LevelManager.instance.ShowInterstitialAdOnDeath();
     }
 
     public void DisablePlayer()

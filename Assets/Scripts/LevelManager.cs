@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using GoogleMobileAds.Api;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
@@ -24,7 +26,9 @@ public class LevelManager : MonoBehaviour
     }
 
     //components
+    public CancellationTokenSource tokenSource;
     public NavMeshSurface navMeshSurface;
+    [SerializeField] private AdManager adManager;
     [SerializeField] private Animator camAnimator;
     [SerializeField] private LevelUI levelUI;
     [SerializeField] private GameObject enemyDieVfx;
@@ -33,21 +37,26 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject secondGuideEffect;
     public Camera mainCam;
 
-
+    //tutorial and level
     public bool isTutorial = true;
     public int currentLevel;
     public int startLevel;
     private int numberOfLevels;
     public List<Level> levels;
 
+    //fakes
     [SerializeField] private GameObject fakeEnemyPrefab;
     [SerializeField] private GameObject fakeGoalPrefab;
     private GameObject currentFakeEnemy;
     private GameObject currentFakeGoal;
     [SerializeField] private int delayBetweenSpawningCharacters = 1000;
-    public CancellationTokenSource tokenSource;
 
+    //camera
     public bool colorCam;
+
+    //ad
+    public int deathAdCountdown;
+    public int levelPassAdCountdown;
 
     private void OnEnable()
     {
@@ -65,6 +74,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        adManager.RequestInterstitial();
         colorCam = GameManager.instance.colorCam;
 
         numberOfLevels = levels.Count;
@@ -85,6 +95,8 @@ public class LevelManager : MonoBehaviour
         SpawnFakes();
     }
 
+    #region Event Functions
+
     private void OnFirstTouchToGoal()
     {
         SoundManager.instance.BGPlayHard();
@@ -100,8 +112,10 @@ public class LevelManager : MonoBehaviour
     private void OnPLayerDeath()
     {
         SoundManager.instance.BGPlayLight();
-        if (!colorCam) return;
-        camAnimator.SetBool("Color", false);
+        if (colorCam)
+        {
+            camAnimator.SetBool("Color", false);
+        }
     }
 
     private void OnSecondTouchToGoal()
@@ -125,12 +139,17 @@ public class LevelManager : MonoBehaviour
         levelUI.SetLevelNum(currentLevel);
         SaveAndLoad.instance.Save();
         levels[currentLevel].StartLevel();
-
+        ShowInterstitialAdOnLevelPass();
+        
         if (!isTutorial) return;
         isTutorial = false;
         levelUI.HandleGoalIsFakeTutorial(false);
         secondGuideEffect.SetActive(false);
     }
+
+    #endregion
+
+    #region Fakes
 
     public async void SpawnFakes()
     {
@@ -178,6 +197,10 @@ public class LevelManager : MonoBehaviour
         Destroy(goalDieEffect, 2f);
     }
 
+    #endregion
+
+    #region Tutorial
+
     private async void MovementAndIntroTutorial()
     {
         tokenSource = new CancellationTokenSource();
@@ -208,4 +231,35 @@ public class LevelManager : MonoBehaviour
 
         Time.timeScale = 1;
     }
+
+    #endregion
+
+    #region Ad
+
+    public void ShowInterstitialAdOnDeath()
+    {
+        if (deathAdCountdown < adManager.deathNumberToShowAd - 1)
+        {
+            deathAdCountdown++;
+            return;
+        }
+
+        deathAdCountdown = 0;
+        adManager.RequestInterstitial();
+        adManager.ShowInterstitialAd();
+    }
+    private void ShowInterstitialAdOnLevelPass()
+    {
+        if (levelPassAdCountdown < adManager.numberOfLevelPassedToShowAd - 1)
+        {
+            levelPassAdCountdown++;
+            return;
+        }
+
+        levelPassAdCountdown = 0;
+        adManager.RequestInterstitial();
+        adManager.ShowInterstitialAd();
+    }
+
+    #endregion
 }
