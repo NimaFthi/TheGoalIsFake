@@ -1335,6 +1335,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bannerAdPosition: 0
+  deathNumberToShowAd: 5
+  numberOfLevelPassedToShowAd: 3
 --- !u!1 &23309523
 GameObject:
   m_ObjectHideFlags: 0
@@ -10596,7 +10598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &309135217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13568,7 +13570,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393450949}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -25858,7 +25860,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 40
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -27139,7 +27141,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775718979}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -39797,7 +39799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1114448745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39832,7 +39834,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -44771,6 +44773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1254612250}
+  - component: {fileID: 1254612251}
   m_Layer: 0
   m_Name: Camera Pivot
   m_TagString: Untagged
@@ -44793,6 +44796,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
+--- !u!114 &1254612251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254612249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee83f94523525e141b089cec1ef3357b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTransform: {fileID: 7879382233653523873}
+  offset: {x: -22.5, y: 18, z: -22.5}
 --- !u!1 &1256050763
 GameObject:
   m_ObjectHideFlags: 0
@@ -71551,13 +71568,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977609960}
-  m_LocalRotation: {x: 0.21130909, y: 0.78488564, z: -0.3659982, w: 0.45315376}
+  m_LocalRotation: {x: 0.41128707, y: -0.061268352, z: -0.24340467, w: 0.8762667}
   m_LocalPosition: {x: -201.26, y: 165, z: 179.651}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: 120, z: 0}
+  m_LocalEulerAnglesHint: {x: 43.707, y: -25.183, z: -41.286}
 --- !u!1001 &1978476076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72006,6 +72023,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
   m_PrefabInstance: {fileID: 1981582793}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1981582795 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+  m_PrefabInstance: {fileID: 1981582793}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1983058334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78844,7 +78872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb2178107cabeb46bba06a41644abdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 692406621}
+  joystick: {fileID: 1981582795}
   moveSpeed: 750
 --- !u!54 &7879382233653523875
 Rigidbody:

@@ -17,7 +17,7 @@ public class AdManager : MonoBehaviour
 
     private void Start()
     {
-        RequestBanner();
+        // RequestBanner();
     }
 
     private AdRequest CreateAdRequest()

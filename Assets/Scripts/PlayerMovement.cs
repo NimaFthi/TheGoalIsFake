@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     //components
-    [SerializeField] private FloatingJoyStick joystick;
+    [SerializeField] private Joystick joystick;
     private Rigidbody rb;
 
     //move stats
@@ -29,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void GatherInput()
     {
-        var horizontal = joystick.horizontal;
-        var vertical = joystick.vertical;
+        var horizontal = joystick.Horizontal;
+        var vertical = joystick.Vertical;
 
         input = new Vector3(horizontal, 0, vertical).ToIso();
         input.Normalize();

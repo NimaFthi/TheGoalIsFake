@@ -74,7 +74,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        adManager.RequestInterstitial();
+        // adManager.RequestInterstitial();
         colorCam = GameManager.instance.colorCam;
 
         numberOfLevels = levels.Count;
@@ -245,8 +245,8 @@ public class LevelManager : MonoBehaviour
         }
 
         deathAdCountdown = 0;
-        adManager.RequestInterstitial();
-        adManager.ShowInterstitialAd();
+        // adManager.RequestInterstitial();
+        // adManager.ShowInterstitialAd();
     }
     private void ShowInterstitialAdOnLevelPass()
     {
@@ -257,8 +257,8 @@ public class LevelManager : MonoBehaviour
         }
 
         levelPassAdCountdown = 0;
-        adManager.RequestInterstitial();
-        adManager.ShowInterstitialAd();
+        // adManager.RequestInterstitial();
+        // adManager.ShowInterstitialAd();
     }
 
     #endregion
