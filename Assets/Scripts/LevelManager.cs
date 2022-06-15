@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using GoogleMobileAds.Api;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour
 {
@@ -28,7 +26,6 @@ public class LevelManager : MonoBehaviour
     //components
     public CancellationTokenSource tokenSource;
     public NavMeshSurface navMeshSurface;
-    [SerializeField] private AdManager adManager;
     [SerializeField] private Animator camAnimator;
     [SerializeField] private LevelUI levelUI;
     [SerializeField] private GameObject enemyDieVfx;
@@ -74,10 +71,10 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        // adManager.RequestInterstitial();
         colorCam = GameManager.instance.colorCam;
 
         numberOfLevels = levels.Count;
+        SaveAndLoad.instance.ResetSave();
         SaveAndLoad.instance.Load();
         currentLevel = startLevel;
         levelUI.SetLevelNum(currentLevel);
@@ -139,8 +136,7 @@ public class LevelManager : MonoBehaviour
         levelUI.SetLevelNum(currentLevel);
         SaveAndLoad.instance.Save();
         levels[currentLevel].StartLevel();
-        ShowInterstitialAdOnLevelPass();
-        
+
         if (!isTutorial) return;
         isTutorial = false;
         levelUI.HandleGoalIsFakeTutorial(false);
@@ -230,35 +226,6 @@ public class LevelManager : MonoBehaviour
         await Task.Delay(2000, cancellationToken);
 
         Time.timeScale = 1;
-    }
-
-    #endregion
-
-    #region Ad
-
-    public void ShowInterstitialAdOnDeath()
-    {
-        if (deathAdCountdown < adManager.deathNumberToShowAd - 1)
-        {
-            deathAdCountdown++;
-            return;
-        }
-
-        deathAdCountdown = 0;
-        // adManager.RequestInterstitial();
-        // adManager.ShowInterstitialAd();
-    }
-    private void ShowInterstitialAdOnLevelPass()
-    {
-        if (levelPassAdCountdown < adManager.numberOfLevelPassedToShowAd - 1)
-        {
-            levelPassAdCountdown++;
-            return;
-        }
-
-        levelPassAdCountdown = 0;
-        // adManager.RequestInterstitial();
-        // adManager.ShowInterstitialAd();
     }
 
     #endregion
