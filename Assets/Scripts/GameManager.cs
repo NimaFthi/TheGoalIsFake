@@ -23,7 +23,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //setting
     public bool colorCam;
+    
+    //Score
+    public float bestTimeScore = Mathf.Infinity;
 
     private void Awake()
     {
@@ -32,16 +36,25 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        // if more then one singleton is in the scene
-        //destroy ourselves
+        
         else
         {
             DontDestroyOnLoad(gameObject);
         }
+        
+        SaveAndLoad.instance.LoadHighScore();
+    }
+
+    private void OnApplicationQuit()
+    {
+        if(SceneManager.GetActiveScene().buildIndex != 1) return;
+        
+        SaveAndLoad.instance.AutoSave();
     }
 
     public void LoadEndMenu()
     {
+        SaveAndLoad.instance.SaveHighScore();
         SceneManager.LoadScene(2);
         SaveAndLoad.instance.ResetSave();
     }

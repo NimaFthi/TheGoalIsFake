@@ -50,10 +50,10 @@ public class LevelManager : MonoBehaviour
 
     //camera
     public bool colorCam;
-
-    //ad
-    public int deathAdCountdown;
-    public int levelPassAdCountdown;
+    
+    //Timer
+    public float lastSavedTime;
+    public float timer;
 
     private void OnEnable()
     {
@@ -74,8 +74,13 @@ public class LevelManager : MonoBehaviour
         colorCam = GameManager.instance.colorCam;
 
         numberOfLevels = levels.Count;
+        
+        #if UNITY_EDITOR
         SaveAndLoad.instance.ResetSave();
-        SaveAndLoad.instance.Load();
+        #endif
+        
+        SaveAndLoad.instance.AutoLoad();
+        timer = lastSavedTime;
         currentLevel = startLevel;
         levelUI.SetLevelNum(currentLevel);
         levels[startLevel].StartLevel();
@@ -90,6 +95,11 @@ public class LevelManager : MonoBehaviour
 
         isTutorial = false;
         SpawnFakes();
+    }
+
+    private void Update()
+    {
+        HandleTimer();
     }
 
     #region Event Functions
@@ -134,7 +144,7 @@ public class LevelManager : MonoBehaviour
         DestroyFakes();
         currentLevel++;
         levelUI.SetLevelNum(currentLevel);
-        SaveAndLoad.instance.Save();
+        SaveAndLoad.instance.AutoSave();
         levels[currentLevel].StartLevel();
 
         if (!isTutorial) return;
@@ -226,6 +236,15 @@ public class LevelManager : MonoBehaviour
         await Task.Delay(2000, cancellationToken);
 
         Time.timeScale = 1;
+    }
+
+    #endregion
+
+    #region Timer
+
+    private void HandleTimer()
+    {
+        timer += Time.deltaTime;
     }
 
     #endregion

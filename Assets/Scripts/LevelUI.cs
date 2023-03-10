@@ -23,6 +23,7 @@ public class LevelUI : MonoBehaviour
     public void BackToStartMenu()
     {
         LevelManager.instance.tokenSource.Cancel();
+        SaveAndLoad.instance.AutoSave();
         SceneManager.LoadScene(0);
     }
 

@@ -36,20 +36,39 @@ public class SaveAndLoad : MonoBehaviour
         }
     }
 
-    public void Save()
+    public void AutoSave()
     {
-        PlayerPrefs.SetInt("StartLevel",LevelManager.instance.currentLevel);
+        PlayerPrefs.SetInt("StartLevel", LevelManager.instance.currentLevel);
+        PlayerPrefs.SetFloat("LastSavedTime", LevelManager.instance.timer);
         PlayerPrefs.Save();
     }
 
-    public void Load()
+    public void SaveHighScore()
+    {
+        if (LevelManager.instance.timer < GameManager.instance.bestTimeScore)
+        {
+            PlayerPrefs.SetFloat("BestTimeScore", LevelManager.instance.timer);
+            GameManager.instance.bestTimeScore = LevelManager.instance.timer;
+        }
+
+        PlayerPrefs.Save();
+    }
+
+    public void LoadHighScore()
+    {
+        GameManager.instance.bestTimeScore = PlayerPrefs.GetFloat("BestTimeScore");
+    }
+
+    public void AutoLoad()
     {
         LevelManager.instance.startLevel = PlayerPrefs.GetInt("StartLevel");
+        LevelManager.instance.lastSavedTime = PlayerPrefs.GetFloat("LastSavedTime");
     }
 
     public void ResetSave()
     {
-        PlayerPrefs.SetInt("StartLevel",0);
+        PlayerPrefs.SetInt("StartLevel", 0);
+        PlayerPrefs.SetFloat("LastSavedTime", 0f);
         PlayerPrefs.Save();
     }
 }
