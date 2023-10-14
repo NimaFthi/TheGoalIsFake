@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,6 +19,9 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
+    
+    //Components
+    public AdManager adManager;
 
     //setting
     public bool colorCam;

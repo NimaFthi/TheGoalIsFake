@@ -71,6 +71,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        GameManager.instance.adManager.RequestAndShowBannerAd();
         colorCam = GameManager.instance.colorCam;
 
         numberOfLevels = levels.Count;

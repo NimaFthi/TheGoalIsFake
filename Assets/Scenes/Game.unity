@@ -10599,7 +10599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &309135217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23796,10 +23796,10 @@ RectTransform:
   m_Father: {fileID: 1114448748}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 450.19}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692406619
 MonoBehaviour:
@@ -23854,7 +23854,7 @@ MonoBehaviour:
   background: {fileID: 1965908228}
   handle: {fileID: 531196258}
   direction: 2
-  handleLimit: 0.2
+  handleLimit: 0.5
 --- !u!1 &695144482
 GameObject:
   m_ObjectHideFlags: 0
@@ -39746,6 +39746,8 @@ MonoBehaviour:
   fakeGoalPrefab: {fileID: 2179968418104353075, guid: 6000b03605c9e3b4893b5523393f5daf, type: 3}
   delayBetweenSpawningCharacters: 1000
   colorCam: 0
+  lastSavedTime: 0
+  timer: 0
 --- !u!114 &1109257130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39906,7 +39908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1114448745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39937,9 +39939,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 0.5
+  m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
@@ -70988,7 +70990,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1965908229
 MonoBehaviour:
@@ -70997,7 +70999,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965908227}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -72273,17 +72275,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
   m_PrefabInstance: {fileID: 1981582793}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1981582795 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
-  m_PrefabInstance: {fileID: 1981582793}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1983058334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79148,7 +79139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb2178107cabeb46bba06a41644abdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 1981582795}
+  joystick: {fileID: 692406621}
   moveSpeed: 750
 --- !u!54 &7879382233653523875
 Rigidbody:
