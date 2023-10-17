@@ -54,6 +54,10 @@ public class LevelManager : MonoBehaviour
     //Timer
     public float lastSavedTime;
     public float timer;
+    
+    //death
+    private int playerDeathNumber = 0;
+    private int levelPassedNumber = 0;
 
     private void OnEnable()
     {
@@ -71,6 +75,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        GameManager.instance.adManager.RequestInterstitial();
         GameManager.instance.adManager.RequestAndShowBannerAd();
         colorCam = GameManager.instance.colorCam;
 
@@ -119,6 +124,13 @@ public class LevelManager : MonoBehaviour
 
     private void OnPLayerDeath()
     {
+        playerDeathNumber++;
+
+        if (playerDeathNumber % GameManager.instance.adManager.deathNumberToShowAd == 0)
+        {
+            GameManager.instance.adManager.ShowInterstitialAd();
+        }
+        
         SoundManager.instance.BGPlayLight();
         if (colorCam)
         {
@@ -147,6 +159,11 @@ public class LevelManager : MonoBehaviour
         levelUI.SetLevelNum(currentLevel);
         SaveAndLoad.instance.AutoSave();
         levels[currentLevel].StartLevel();
+
+        if (levelPassedNumber % GameManager.instance.adManager.numberOfLevelPassedToShowAd == 0 && !isTutorial)
+        {
+            GameManager.instance.adManager.ShowInterstitialAd();
+        }
 
         if (!isTutorial) return;
         isTutorial = false;

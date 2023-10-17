@@ -61,15 +61,23 @@ public class AdManager : MonoBehaviour
     public void RequestInterstitial()
     {
         interstitialAd?.Destroy();
+        interstitialAd = null;
         
         interstitialAd = new InterstitialAd(interstitialAdUnitId);
         
         interstitialAd.LoadAd(CreateAdRequest());
+
+        interstitialAd.OnAdClosed += OnInterstitialAdClosed;
+    }
+
+    private void OnInterstitialAdClosed(object sender, EventArgs args)
+    {
+        RequestInterstitial();
     }
 
     public void ShowInterstitialAd()
     {
-        if (interstitialAd != null && interstitialAd.IsLoaded())
+        if (interstitialAd.IsLoaded())
         {
             Debug.Log("Showing interstitial ad.");
             interstitialAd.Show();
