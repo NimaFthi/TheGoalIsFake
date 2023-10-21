@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
+using NavMeshSurface = Unity.AI.Navigation.NavMeshSurface;
 
 public class LevelManager : MonoBehaviour
 {

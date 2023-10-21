@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
         
         SaveAndLoad.instance.LoadHighScore();
     }
+    
+    private void Start()
+    {
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
+    }
 
     private void OnApplicationQuit()
     {
