@@ -3298,16 +3298,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bannerAdPosition: 1
-  deathNumberToShowAd: 7
-  numberOfLevelPassedToShowAd: 5
+  deathNumberToShowAd: 5
+  numberOfLevelPassedToShowAd: 3
   deviceType: 0
   adDetails:
   - deviceType: 0
-    bannerAdId: ca-app-pub-3940256099942544/6300978111
-    interstitialAdId: ca-app-pub-3940256099942544/1033173712
+    bannerAdId: ca-app-pub-8085358591011633/2968738291
+    interstitialAdId: ca-app-pub-8085358591011633/7999356080
   - deviceType: 1
-    bannerAdId: ca-app-pub-3940256099942544/2934735716
-    interstitialAdId: ca-app-pub-3940256099942544/4411468910
+    bannerAdId: ca-app-pub-8085358591011633/2968738291
+    interstitialAdId: ca-app-pub-8085358591011633/7999356080
 --- !u!1 &1863846056
 GameObject:
   m_ObjectHideFlags: 0

@@ -160,6 +160,7 @@ public class LevelManager : MonoBehaviour
         levelUI.SetLevelNum(currentLevel);
         SaveAndLoad.instance.AutoSave();
         levels[currentLevel].StartLevel();
+        levelPassedNumber++;
 
         if (levelPassedNumber % GameManager.instance.adManager.numberOfLevelPassedToShowAd == 0 && !isTutorial)
         {

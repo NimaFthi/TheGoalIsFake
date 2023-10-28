@@ -53,7 +53,7 @@ public class AdManager : MonoBehaviour
     {
         bannerAd?.Destroy();
         
-        bannerAd = new BannerView(bannerAdUnitId, AdSize.Leaderboard, bannerAdPosition);
+        bannerAd = new BannerView(bannerAdUnitId, AdSize.Banner, bannerAdPosition);
 
         bannerAd.LoadAd(CreateAdRequest());
     }
